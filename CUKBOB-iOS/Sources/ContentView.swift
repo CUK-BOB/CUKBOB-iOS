@@ -4,8 +4,12 @@ public struct ContentView: View {
     public init() {}
 
     public var body: some View {
-        Text("Hello, World!")
-            .padding()
+        VStack {
+            CUKBOBText("테스트", fontType: .display01, color: Color(.error))
+            Text("테스트")
+                .applyCUKBOBFont(.display01)
+                .foregroundStyle(Color((.success)))
+        }
     }
 }
 
