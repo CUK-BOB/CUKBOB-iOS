@@ -10,7 +10,6 @@ import SwiftUI
 struct TabBarView: View {
     
     @EnvironmentObject var navigationManager: NavigationManager
-    @State private var isLoggedIn: Bool = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -39,18 +38,8 @@ struct TabBarView: View {
             
             CUKBOBTabBar(selectedTab: $navigationManager.selectedTab)
         }
-        .onAppear {
-            if !isLoggedIn {
-                navigationManager.presentFullScreenModal(.login)
-            }
-        }
         .fullScreenCover(item: $navigationManager.fullScreenModal) { destination in
             destination.build()
-                .onDisappear {
-                    if destination == .login {
-                        isLoggedIn = true // 일단 로그인 화면에서 돌아오면 로그인 되어있다고 가정
-                    }
-                }
         }
     }
 }

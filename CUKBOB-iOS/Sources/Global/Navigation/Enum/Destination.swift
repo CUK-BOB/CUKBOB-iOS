@@ -9,12 +9,19 @@ import SwiftUI
 
 public enum Destination: Hashable {
     case temp
-    
+    case nickName
+}
+
+// MARK: - Func
+
+extension Destination {
     @ViewBuilder
     func build() -> some View {
         switch self {
         case .temp:
             TempView()
+        case .nickName:
+            NickNameView()
         }
     }
 }

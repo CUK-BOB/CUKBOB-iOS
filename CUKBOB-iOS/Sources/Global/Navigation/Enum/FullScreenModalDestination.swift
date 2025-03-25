@@ -15,7 +15,11 @@ public enum FullScreenModalDestination: Hashable, Identifiable {
         case .login: return UUID()
         }
     }
-    
+}
+
+// MARK: - Func
+
+extension FullScreenModalDestination {
     @ViewBuilder
     func build() -> some View {
         switch self {
