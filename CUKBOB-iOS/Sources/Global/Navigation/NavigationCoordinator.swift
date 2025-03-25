@@ -17,6 +17,8 @@ public protocol NavigationCoordinator {
     var selectedTab: TabBarState { get set }
     var fullScreenModal: FullScreenModalDestination? { get set }
     
+    var currentPathBinding: Binding<NavigationPath> { get }
+    
     func navigate(to destination: Destination)
     func popBack()
     func popToRoot()
@@ -26,6 +28,4 @@ public protocol NavigationCoordinator {
     
     func presentFullScreenModal(_ destination: FullScreenModalDestination)
     func dismissFullScreenModal()
-    
-    var currentPathBinding: Binding<NavigationPath> { get }
 }
