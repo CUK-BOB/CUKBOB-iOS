@@ -49,7 +49,6 @@ struct CUKBOBTabBar: View {
 }
 
 #Preview {
-    @Previewable @StateObject var navigationManager = NavigationManager()
     TabBarView()
-        .environmentObject(navigationManager)
+        .environmentObject(NavigationManager())
 }

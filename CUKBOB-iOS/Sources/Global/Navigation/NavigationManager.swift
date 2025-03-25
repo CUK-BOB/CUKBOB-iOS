@@ -17,19 +17,6 @@ final class NavigationManager: NavigationCoordinator, ObservableObject {
     @Published var selectedTab: TabBarState = .home
     @Published var fullScreenModal: FullScreenModalDestination?
     
-    var currentPathBinding: Binding<NavigationPath> {
-        switch selectedTab {
-        case .home:
-            return Binding(get: { self.homePath }, set: { self.homePath = $0 })
-        case .weeklyMenu:
-            return Binding(get: { self.weeklyMenuPath }, set: { self.weeklyMenuPath = $0 })
-        case .foodAndBeverage:
-            return Binding(get: { self.foodAndBeveragePath }, set: { self.foodAndBeveragePath = $0 })
-        case .myPage:
-            return Binding(get: { self.myPagePath }, set: { self.myPagePath = $0 })
-        }
-    }
-    
     func navigate(to destination: Destination) {
         switch selectedTab {
         case .home:
