@@ -8,15 +8,6 @@
 import SwiftUI
 
 public protocol NavigationCoordinator {
-    
-    var homePath: NavigationPath { get set }
-    var weeklyMenuPath: NavigationPath { get set }
-    var foodAndBeveragePath: NavigationPath { get set }
-    var myPagePath: NavigationPath { get set }
-    
-    var selectedTab: TabBarState { get set }
-    var fullScreenModal: FullScreenModalDestination? { get set }
-    
     func navigate(to destination: Destination)
     func popBack()
     func popToRoot()
