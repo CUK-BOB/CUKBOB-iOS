@@ -8,9 +8,10 @@
 import SwiftUI
 
 enum CUKBOBFont: Sendable {
+    
     case display01
     case title01, title02, title03
-    case heading01, heading02, heading03
+    case heading01, heading02, heading03, heading04
     case body01, body02
     case label01, label02
     
@@ -21,8 +22,8 @@ enum CUKBOBFont: Sendable {
         case .title02: return 28
         case .title03: return 24
         case .heading01: return 20
-        case .heading02: return 18
-        case .heading03: return 16
+        case .heading02, .heading03: return 18
+        case .heading04: return 16
         case .body01, .body02: return 14
         case .label01, .label02: return 12
         }
@@ -34,7 +35,7 @@ enum CUKBOBFont: Sendable {
             return -3
         case .body01, .body02:
             return -2
-        case .heading02, .heading03, .label01, .label02:
+        case .heading02, .heading03, .heading04, .label01, .label02:
             return -1
         }
     }
@@ -46,8 +47,8 @@ enum CUKBOBFont: Sendable {
         case .title02: return 35
         case .title03: return 31
         case .heading01: return 27
-        case .heading02: return 25
-        case .heading03: return 23
+        case .heading02, .heading03: return 25
+        case .heading04: return 23
         case .body01, .body02: return 21
         case .label01: return 19
         case .label02: return 20
@@ -56,15 +57,16 @@ enum CUKBOBFont: Sendable {
     
     var swiftUIFont: Font {
         switch self {
-        case .display01, .title01, .title02, .title03, .heading01, .heading02, .heading03, .body01, .label01:
+        case .display01, .title01, .title02, .title03, .heading01, .heading02, .heading04, .body01, .label01:
             return CUKBOBIOSFontFamily.Pretendard.semiBold.swiftUIFont(size: self.size)
-        case .body02, .label02:
+        case .heading03, .body02, .label02:
             return CUKBOBIOSFontFamily.Pretendard.medium.swiftUIFont(size: self.size)
         }
     }
 }
 
 struct FontModifier: ViewModifier {
+    
     private let font: CUKBOBFont
     
     nonisolated init(font: CUKBOBFont) {
@@ -86,15 +88,12 @@ extension View {
 }
 
 struct CUKBOBText: View {
+    
     private let title: String
     private let fontType: CUKBOBFont
     private let color: Color?
     
-    nonisolated init(
-        _ title: String,
-        fontType: CUKBOBFont,
-        color: Color? = Color(.gray900)
-    ) {
+    nonisolated init(_ title: String, fontType: CUKBOBFont, color: Color? = Color(.gray900)) {
         self.title = title
         self.fontType = fontType
         self.color = color
