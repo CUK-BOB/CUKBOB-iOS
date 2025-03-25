@@ -21,9 +21,8 @@ struct CUKBOBTabBar: View {
             Spacer()
             tabItem(tab: .myPage, selectedTab: $selectedTab)
         }
-        .padding(.horizontal, 12)
+        .padding(.horizontal, 14)
         .padding(.vertical, 6)
-        .padding(.bottom, 16)
         .background(Color(.blue100))
     }
     
@@ -31,7 +30,7 @@ struct CUKBOBTabBar: View {
         Button {
             self.selectedTab = tab
         } label: {
-            VStack(spacing: Screen.height(8)) {
+            VStack(alignment: .center, spacing: Screen.height(8)) {
                 Image(self.selectedTab == tab ? tab.selectedImage : tab.defaultImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -43,7 +42,7 @@ struct CUKBOBTabBar: View {
                     color: self.selectedTab == tab ? Color(.blue700) : Color(.blue300)
                 )
             }
-            .frame(width: Screen.width(82), height: Screen.height(46))
+            .frame(width: Screen.width(80), height: Screen.height(46))
         }
         .buttonStyle(.plain)
     }
