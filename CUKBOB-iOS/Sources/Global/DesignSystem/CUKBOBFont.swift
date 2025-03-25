@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum CUKBOBFont: Sendable {
+    
     case display01
     case title01, title02, title03
     case heading01, heading02, heading03, heading04
@@ -65,6 +66,7 @@ enum CUKBOBFont: Sendable {
 }
 
 struct FontModifier: ViewModifier {
+    
     private let font: CUKBOBFont
     
     nonisolated init(font: CUKBOBFont) {
@@ -86,15 +88,12 @@ extension View {
 }
 
 struct CUKBOBText: View {
+    
     private let title: String
     private let fontType: CUKBOBFont
     private let color: Color?
     
-    nonisolated init(
-        _ title: String,
-        fontType: CUKBOBFont,
-        color: Color? = Color(.gray900)
-    ) {
+    nonisolated init(_ title: String, fontType: CUKBOBFont, color: Color? = Color(.gray900)) {
         self.title = title
         self.fontType = fontType
         self.color = color
