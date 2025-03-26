@@ -21,7 +21,7 @@ extension Destination {
         case .temp:
             TempView()
         case .nickName:
-            NickNameView()
+            NickNameView(viewModel: NickNameViewModel())
         }
     }
 }
