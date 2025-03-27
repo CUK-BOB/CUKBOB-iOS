@@ -15,7 +15,13 @@ enum CUKBOBFont: Sendable {
     case body01, body02
     case label01, label02
     
+    private static let scaleRatio: CGFloat = max(Screen.height(1), Screen.width(1))
+    
     var size: CGFloat {
+        return defaultSize * CUKBOBFont.scaleRatio
+    }
+    
+    var defaultSize: CGFloat {
         switch self {
         case .display01: return 72
         case .title01: return 36
@@ -32,11 +38,11 @@ enum CUKBOBFont: Sendable {
     var letterSpacing: CGFloat {
         switch self {
         case .display01, .title01, .title02, .title03, .heading01:
-            return -3
+            return CGFloat(-0.3) / 100 * size
         case .body01, .body02:
-            return -2
+            return CGFloat(-0.2) / 100 * size
         case .heading02, .heading03, .heading04, .label01, .label02:
-            return -1
+            return CGFloat(-0.1) / 100 * size
         }
     }
     
@@ -58,9 +64,9 @@ enum CUKBOBFont: Sendable {
     var swiftUIFont: Font {
         switch self {
         case .display01, .title01, .title02, .title03, .heading01, .heading02, .heading04, .body01, .label01:
-            return CUKBOBIOSFontFamily.Pretendard.semiBold.swiftUIFont(size: self.size)
+            return CUKBOBIOSFontFamily.Pretendard.semiBold.swiftUIFont(size: self.defaultSize)
         case .heading03, .body02, .label02:
-            return CUKBOBIOSFontFamily.Pretendard.medium.swiftUIFont(size: self.size)
+            return CUKBOBIOSFontFamily.Pretendard.medium.swiftUIFont(size: self.defaultSize)
         }
     }
 }
@@ -76,7 +82,7 @@ struct FontModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(font.swiftUIFont)
-            .lineSpacing((font.lineHeight - font.size) / 4)
+            .lineSpacing((font.lineHeight - font.defaultSize) / 4)
             .kerning(font.letterSpacing)
     }
 }

@@ -8,19 +8,23 @@
 import SwiftUI
 
 public enum FullScreenModalDestination: Hashable, Identifiable {
-    case temp
+    case login
     
     public var id: UUID {
         switch self {
-        case .temp: return UUID()
+        case .login: return UUID()
         }
     }
-    
+}
+
+// MARK: - Func
+
+extension FullScreenModalDestination {
     @ViewBuilder
     func build() -> some View {
         switch self {
-        case .temp:
-            TempView()
+        case .login:
+            LoginView()
         }
     }
 }

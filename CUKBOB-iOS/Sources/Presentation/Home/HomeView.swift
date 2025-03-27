@@ -14,7 +14,7 @@ struct HomeView: View {
     var body: some View {
         VStack {
             Button {
-                navigationManager.presentFullScreenModal(.temp)
+                navigationManager.presentFullScreenModal(.login)
             } label: {
                 Text("FullScreenModal")
             }
@@ -24,10 +24,17 @@ struct HomeView: View {
             } label: {
                 Text("navigate")
             }
+            
+            Button {
+                navigationManager.rootView = .login
+            } label: {
+                Text("Back To LoginView")
+            }
         }
     }
 }
 
 #Preview {
     HomeView()
+        .environmentObject(NavigationManager())
 }

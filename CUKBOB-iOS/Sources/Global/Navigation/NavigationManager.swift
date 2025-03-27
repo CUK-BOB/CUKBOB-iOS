@@ -7,26 +7,28 @@
 
 import SwiftUI
 
-final class NavigationManager: NavigationCoordinator, ObservableObject {
+final class NavigationManager: ObservableObject {
     
+    @Published var loginPath = NavigationPath()
     @Published var homePath = NavigationPath()
     @Published var weeklyMenuPath = NavigationPath()
     @Published var foodAndBeveragePath = NavigationPath()
     @Published var myPagePath = NavigationPath()
     
+    @Published var rootView: RootView = .login
     @Published var selectedTab: TabBarState = .home
     @Published var fullScreenModal: FullScreenModalDestination?
-    
+}
+
+// MARK: - NavigationCoordinator
+
+extension NavigationManager: NavigationCoordinator {
     func navigate(to destination: Destination) {
-        switch selectedTab {
-        case .home:
-            homePath.append(destination)
-        case .weeklyMenu:
-            weeklyMenuPath.append(destination)
-        case .foodAndBeverage:
-            foodAndBeveragePath.append(destination)
-        case .myPage:
-            myPagePath.append(destination)
+        switch rootView {
+        case .login:
+            loginPath.append(destination)
+        case .tabBar:
+            navigateTab(to: destination)
         }
     }
     
@@ -84,17 +86,21 @@ final class NavigationManager: NavigationCoordinator, ObservableObject {
     func dismissFullScreenModal() {
         fullScreenModal = nil
     }
-    
-    var currentPathBinding: Binding<NavigationPath> {
+}
+
+// MARK: - Private Func
+
+private extension NavigationManager {
+    func navigateTab(to destination: Destination) {
         switch selectedTab {
         case .home:
-            return Binding(get: { self.homePath }, set: { self.homePath = $0 })
+            homePath.append(destination)
         case .weeklyMenu:
-            return Binding(get: { self.weeklyMenuPath }, set: { self.weeklyMenuPath = $0 })
+            weeklyMenuPath.append(destination)
         case .foodAndBeverage:
-            return Binding(get: { self.foodAndBeveragePath }, set: { self.foodAndBeveragePath = $0 })
+            foodAndBeveragePath.append(destination)
         case .myPage:
-            return Binding(get: { self.myPagePath }, set: { self.myPagePath = $0 })
+            myPagePath.append(destination)
         }
     }
 }

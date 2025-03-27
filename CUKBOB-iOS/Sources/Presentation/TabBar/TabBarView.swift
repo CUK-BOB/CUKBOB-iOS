@@ -13,9 +13,27 @@ struct TabBarView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            NavigationStack(path: navigationManager.currentPathBinding) {
-                navigationManager.selectedTab.build()
-                    .navigationDestination(for: Destination.self) { $0.build() }
+            switch navigationManager.selectedTab {
+            case .home:
+                NavigationStack(path: $navigationManager.homePath) {
+                    navigationManager.selectedTab.build()
+                        .navigationDestination(for: Destination.self) { $0.build() }
+                }
+            case .weeklyMenu:
+                NavigationStack(path: $navigationManager.weeklyMenuPath) {
+                    navigationManager.selectedTab.build()
+                        .navigationDestination(for: Destination.self) { $0.build() }
+                }
+            case .foodAndBeverage:
+                NavigationStack(path: $navigationManager.foodAndBeveragePath) {
+                    navigationManager.selectedTab.build()
+                        .navigationDestination(for: Destination.self) { $0.build() }
+                }
+            case .myPage:
+                NavigationStack(path: $navigationManager.myPagePath) {
+                    navigationManager.selectedTab.build()
+                        .navigationDestination(for: Destination.self) { $0.build() }
+                }
             }
             
             CUKBOBTabBar(selectedTab: $navigationManager.selectedTab)
@@ -27,7 +45,6 @@ struct TabBarView: View {
 }
 
 #Preview {
-    @Previewable @StateObject var navigationManager = NavigationManager()
     TabBarView()
-        .environmentObject(navigationManager)
+        .environmentObject(NavigationManager())
 }
