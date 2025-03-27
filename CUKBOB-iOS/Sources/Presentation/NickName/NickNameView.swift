@@ -20,6 +20,9 @@ struct NickNameView: View {
         ZStack {
             Color(.blue0)
                 .ignoresSafeArea()
+                .onTapGesture {
+                    hideKeyboard()
+                }
             
             VStack(alignment: .leading, spacing: 0) {
                 titleSection
@@ -30,9 +33,6 @@ struct NickNameView: View {
                 
                 confirmButtonSection
             }
-        }
-        .onTapGesture {
-            hideKeyboard()
         }
         .navigationBarBackButtonHidden()
         .ignoresSafeArea(.keyboard)
