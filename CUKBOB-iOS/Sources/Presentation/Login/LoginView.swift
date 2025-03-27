@@ -16,10 +16,13 @@ struct LoginView: View {
     // MARK: - body
     
     var body: some View {
-        Button {
-            navigationManager.navigate(to: .nickName)
-        } label: {
-            Text("Login View")
+        NavigationStack(path: $navigationManager.loginPath) {
+            Button {
+                navigationManager.navigate(to: .nickName)
+            } label: {
+                Text("Login View")
+            }
+            .navigationDestination(for: Destination.self) { $0.build() }
         }
     }
 }

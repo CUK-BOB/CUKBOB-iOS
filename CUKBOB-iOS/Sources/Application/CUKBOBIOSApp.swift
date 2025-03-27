@@ -7,7 +7,7 @@ struct CUKBOBIOSApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RootViewManager()
+            TabBarView()
                 .environmentObject(navigationManager)
         }
     }

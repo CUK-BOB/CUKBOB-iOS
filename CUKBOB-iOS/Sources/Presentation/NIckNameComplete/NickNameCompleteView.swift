@@ -64,10 +64,7 @@ private extension NickNameCompleteView {
     
     var confirmButtonSection: some View {
         CUKBOBButton(isEnabled: .constant(true), title: "확인") {
-            /*
-             Todo: 탭바로 돌아가기(dismiss
-             */
-            navigationManager.rootView = .tabBar
+            navigationManager.dissmissLoginView()
         }
         .padding(.horizontal, 20)
         .padding(.bottom, 32)
