@@ -10,6 +10,7 @@ import SwiftUI
 public enum Destination: Hashable {
     case temp
     case nickName
+    case nickNameComplete(nickName: String)
 }
 
 // MARK: - Func
@@ -22,6 +23,8 @@ extension Destination {
             TempView()
         case .nickName:
             NickNameView(viewModel: NickNameViewModel())
+        case .nickNameComplete(let nickName):
+            NickNameCompleteView(nickName: nickName)
         }
     }
 }

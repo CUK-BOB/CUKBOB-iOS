@@ -10,17 +10,14 @@ import SwiftUI
 struct NickNameTextFieldWithButton: View {
     
     // MARK: - Property
-    
-    @State var inputText: String = ""
-    @State var nickNameState: NickNameState = .count
-    @State var isButtonEnabled: Bool = false
-    var nickNameViewModel: NickNameViewModel
+
+    @ObservedObject var viewModel: NickNameViewModel
     var onTap: (() -> Void)?
     
     // MARK: - Initializer
     
     init(nickNameViewModel: NickNameViewModel, onTap: (() -> Void)? = nil) {
-        self.nickNameViewModel = nickNameViewModel
+        self.viewModel = nickNameViewModel
         self.onTap = onTap
     }
     
@@ -37,16 +34,15 @@ struct NickNameTextFieldWithButton: View {
                     
                     TextField(
                         "닉네임을 입력해주세요",
-                        text: $inputText
+                        text: $viewModel.nickName
                     )
-                    .onChange(of: inputText, initial: false) { _, newValue in
-                        print(newValue)
-                        if (newValue.count >= 2 && newValue.count <= 5) &&  !newValue.containsSpecialCharacter() {
-                            self.isButtonEnabled = true
-                            nickNameState = .duplicate
+                    .onChange(of: viewModel.nickName, initial: false) { _, newValue in
+                        if (newValue.count >= 2 && newValue.count <= 5) && !newValue.containsSpecialCharacter() {
+                            self.viewModel.isNickNameButtonEnabled = true
+                            viewModel.nickNameState = .duplicate
                         } else {
-                            self.isButtonEnabled = false
-                            nickNameState = .count
+                            self.viewModel.isNickNameButtonEnabled = false
+                            viewModel.nickNameState = .count
                         }
                     }
                     .applyCUKBOBFont(.body02)
@@ -60,21 +56,26 @@ struct NickNameTextFieldWithButton: View {
                 } label: {
                     CUKBOBText("중복검사", fontType: .label02, color: Color(.gray0))
                         .frame(width: Screen.width(65), height: Screen.height(40), alignment: .center)
-                        .background(isButtonEnabled ? Color(.blue500) : Color(.blue200))
+                        .background(viewModel.isNickNameButtonEnabled ? Color(.blue500) : Color(.blue200))
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
-                .animation(.default, value: isButtonEnabled)
-                .disabled(!isButtonEnabled)
+                .animation(.default, value: viewModel.isNickNameButtonEnabled)
+                .disabled(!viewModel.isNickNameButtonEnabled)
             }
             
             HStack(spacing: 4) {
-                Image(nickNameState.icon)
+                Image(viewModel.nickNameState.icon)
                     .resizable()
                     .renderingMode(.template)
-                    .foregroundStyle(nickNameState.color)
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundStyle(viewModel.nickNameState.color)
                     .frame(width: Screen.width(14), height: Screen.height(14))
                 
-                CUKBOBText(nickNameState.text, fontType: .label02, color: nickNameState.color)
+                CUKBOBText(
+                    viewModel.nickNameState.text,
+                    fontType: .label02,
+                    color: viewModel.nickNameState.color
+                )
             }
         }
     }

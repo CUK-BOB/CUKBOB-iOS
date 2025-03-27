@@ -9,7 +9,11 @@ import SwiftUI
 
 struct LoginView: View {
     
+    // MARK: - Property
+    
     @EnvironmentObject var navigationManager: NavigationManager
+    
+    // MARK: - body
     
     var body: some View {
         Button {

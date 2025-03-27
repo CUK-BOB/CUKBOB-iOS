@@ -11,15 +11,15 @@ struct CUKBOBButton: View {
     
     // MARK: - Property
     
+    @Binding var isEnabled: Bool
     var title: String
-    var isEnabled: Bool = false
     var onTap: (() -> Void)?
     
     // MARK: - Initializer
     
-    init(title: String, isEnabled: Bool = false, onTap: (() -> Void)? = nil) {
+    init(isEnabled: Binding<Bool>, title: String, onTap: (() -> Void)? = nil) {
+        self._isEnabled = isEnabled
         self.title = title
-        self.isEnabled = isEnabled
         self.onTap = onTap
     }
     
@@ -37,8 +37,4 @@ struct CUKBOBButton: View {
         }
         .disabled(!isEnabled)
     }
-}
-
-#Preview {
-    CUKBOBButton(title: "확인")
 }

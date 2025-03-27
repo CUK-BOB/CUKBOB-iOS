@@ -24,6 +24,12 @@ struct HomeView: View {
             } label: {
                 Text("navigate")
             }
+            
+            Button {
+                navigationManager.rootView = .login
+            } label: {
+                Text("Back To LoginView")
+            }
         }
     }
 }

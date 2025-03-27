@@ -17,27 +17,25 @@ struct NickNameView: View {
     // MARK: - body
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            titleSection
-                .padding(.top, Screen.height(169))
-                .padding(.bottom, Screen.height(67))
+        ZStack {
+            Color(.blue0)
+                .ignoresSafeArea()
             
-            NickNameTextFieldWithButton(nickNameViewModel: viewModel) {
-                /*
-                 Todo: 닉네임 중복 확인 API 호출
-                 */
+            VStack(alignment: .leading, spacing: 0) {
+                titleSection
+                
+                nickNameTextFieldWithButtonSection
+                
+                Spacer()
+                
+                confirmButtonSection
             }
-            .padding(.horizontal, 20)
-            
-            Spacer()
-            
-            CUKBOBButton(title: "확인", isEnabled: true) {
-                navigationManager.navigate(to: .nickNameComplete)
-            }
-            .padding(.horizontal, 20)
+        }
+        .onTapGesture {
+            hideKeyboard()
         }
         .navigationBarBackButtonHidden()
-        .background(Color(.blue0))
+        .ignoresSafeArea(.keyboard)
     }
 }
 
@@ -52,6 +50,32 @@ private extension NickNameView {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.horizontal, 20)
+        .padding(.top, Screen.height(169))
+        .padding(.bottom, Screen.height(67))
+    }
+    
+    var nickNameTextFieldWithButtonSection: some View {
+        NickNameTextFieldWithButton(nickNameViewModel: viewModel) {
+            /*
+             Todo: 닉네임 중복 확인 API 호출
+             */
+            viewModel.nickNameState = .available
+            viewModel.isConfirmButtonEnabled = true
+            hideKeyboard()
+        }
+        .padding(.horizontal, 20)
+    }
+    
+    var confirmButtonSection: some View {
+        CUKBOBButton(isEnabled: $viewModel.isConfirmButtonEnabled, title: "확인") {
+            /*
+             Todo: viewModel에서 닉네임 받아서
+             */
+            navigationManager.navigate(to: .nickNameComplete(nickName: viewModel.getNickName))
+        }
+        .animation(.default, value: viewModel.isConfirmButtonEnabled)
+        .padding(.horizontal, 20)
+        .padding(.bottom, 32)
     }
 }
 
