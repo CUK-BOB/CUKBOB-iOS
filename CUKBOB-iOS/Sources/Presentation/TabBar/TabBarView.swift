@@ -41,6 +41,14 @@ struct TabBarView: View {
         .fullScreenCover(item: $navigationManager.fullScreenModal) { destination in
             destination.build()
         }
+        .onAppear {
+            /*
+             추후 로그인 상태 토큰으로 관리
+             */
+            if navigationManager.rootView == .login {
+                navigationManager.presentLoginView()
+            }
+        }
     }
 }
 

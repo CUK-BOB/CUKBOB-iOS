@@ -104,3 +104,17 @@ private extension NavigationManager {
         }
     }
 }
+
+// MARK: - Func
+
+extension NavigationManager {
+    func presentLoginView() {
+        rootView = .login
+        presentFullScreenModal(.login)
+    }
+    
+    func dissmissLoginView() {
+        rootView = .tabBar
+        dismissFullScreenModal()
+    }
+}
