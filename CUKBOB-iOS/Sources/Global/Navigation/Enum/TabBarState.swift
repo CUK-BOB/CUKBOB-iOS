@@ -24,19 +24,19 @@ public enum TabBarState: CaseIterable {
     
     var defaultImage: ImageResource {
         switch self {
-        case .home: return .tempIcon
-        case .weeklyMenu: return .tempIcon
-        case .foodAndBeverage: return .tempIcon
-        case .myPage: return .tempIcon
+        case .home: return .homeNone
+        case .weeklyMenu: return .weekNone
+        case .foodAndBeverage: return .fnBNone
+        case .myPage: return .myNone
         }
     }
     
     var selectedImage: ImageResource {
         switch self {
-        case .home: return .tempIcon
-        case .weeklyMenu: return .tempIcon
-        case .foodAndBeverage: return .tempIcon
-        case .myPage: return .tempIcon
+        case .home: return .home
+        case .weeklyMenu: return .week
+        case .foodAndBeverage: return .fnB
+        case .myPage: return .my
         }
     }
 }
