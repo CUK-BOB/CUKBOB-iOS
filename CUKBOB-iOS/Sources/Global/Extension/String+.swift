@@ -5,7 +5,7 @@
 //  Created by 김승원 on 3/27/25.
 //
 
-import Foundation
+import SwiftUI
 
 extension String {
     func containsSpecialCharacter() -> Bool {

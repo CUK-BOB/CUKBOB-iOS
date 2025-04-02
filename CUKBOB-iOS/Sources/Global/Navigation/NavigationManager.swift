@@ -15,7 +15,7 @@ final class NavigationManager: ObservableObject {
     @Published var foodAndBeveragePath = NavigationPath()
     @Published var myPagePath = NavigationPath()
     
-    @Published var rootView: RootView = .login
+    @Published var rootView: RootView = .tabBar // 추후 로그인으로 바꾸기
     @Published var selectedTab: TabBarState = .home
     @Published var fullScreenModal: FullScreenModalDestination?
 }
