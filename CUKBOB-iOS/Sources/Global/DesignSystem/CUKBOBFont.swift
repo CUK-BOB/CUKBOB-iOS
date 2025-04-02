@@ -74,22 +74,24 @@ enum CUKBOBFont: Sendable {
 struct FontModifier: ViewModifier {
     
     private let font: CUKBOBFont
+    private let lineSpacing: CGFloat?
     
-    nonisolated init(font: CUKBOBFont) {
+    nonisolated init(font: CUKBOBFont, lineSpacing: CGFloat? = nil) {
         self.font = font
+        self.lineSpacing = lineSpacing
     }
     
     func body(content: Content) -> some View {
         content
             .font(font.swiftUIFont)
-            .lineSpacing((font.lineHeight - font.defaultSize) / 4)
+            .lineSpacing(lineSpacing ?? (font.lineHeight - font.defaultSize) / 4)
             .kerning(font.letterSpacing)
     }
 }
 
 extension View {
-    nonisolated func applyCUKBOBFont(_ font: CUKBOBFont) -> some View {
-        modifier(FontModifier(font: font))
+    nonisolated func applyCUKBOBFont(_ font: CUKBOBFont, lineSpacing: CGFloat? = nil) -> some View {
+        modifier(FontModifier(font: font, lineSpacing: lineSpacing))
     }
 }
 

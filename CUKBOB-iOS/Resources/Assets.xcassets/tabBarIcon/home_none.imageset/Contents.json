@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Property 1=home_none.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

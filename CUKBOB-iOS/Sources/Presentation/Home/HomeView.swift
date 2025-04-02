@@ -9,28 +9,54 @@ import SwiftUI
 
 struct HomeView: View {
     
+    // MARK: - Property
+    
     @EnvironmentObject var navigationManager: NavigationManager
     
+    // MARK: - body
+    
     var body: some View {
-        VStack {
-            Button {
-                navigationManager.presentFullScreenModal(.login)
-            } label: {
-                Text("FullScreenModal")
-            }
+        ZStack {
+            Color(.blue100)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    hideKeyboard()
+                }
             
-            Button {
-                navigationManager.navigate(to: .temp)
-            } label: {
-                Text("navigate")
+            VStack(spacing: Screen.height(0)) {
+                guiSection
+                
+                scrollViewSection
             }
+            .ignoresSafeArea(edges: .top)
+        }
+        .navigationBarBackButtonHidden()
+    }
+}
+
+// MARK: - Subview
+
+private extension HomeView {
+    var guiSection: some View {
+        Image(.tempGUI)
+            .resizable()
+            .renderingMode(.original)
+            .aspectRatio(contentMode: .fill)
+            .frame(maxWidth: .infinity)
+            .frame(height: Screen.width(200))
+            .clipped()
             
-            Button {
-                navigationManager.rootView = .login
-            } label: {
-                Text("Back To LoginView")
+    }
+    
+    var scrollViewSection: some View {
+        ScrollView(.vertical) {
+            LazyVStack(alignment: .center, spacing: Screen.height(012), pinnedViews: [.sectionHeaders]) {
+                HomeMealCell()
+                HomeMealCell()
+                HomeMealCell()
             }
         }
+        .padding(.horizontal, Screen.width(25))
     }
 }
 

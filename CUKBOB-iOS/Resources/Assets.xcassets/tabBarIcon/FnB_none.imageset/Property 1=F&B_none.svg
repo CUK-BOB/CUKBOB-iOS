@@ -1,0 +1,13 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Property 1=F&#38;B_none">
+<g id="Rectangle 23">
+<mask id="path-1-inside-1_588_20699" fill="white">
+<rect x="2" y="8" width="20" height="4" rx="1"/>
+</mask>
+<rect x="2" y="8" width="20" height="4" rx="1" fill="#E7EDFF" stroke="#A8B8E1" stroke-width="3" mask="url(#path-1-inside-1_588_20699)"/>
+</g>
+<path id="Rectangle 26" d="M4.53824 6.43937C4.56606 6.32807 4.66606 6.25 4.78078 6.25H19.2192C19.3339 6.25 19.4339 6.32807 19.4618 6.43937L19.9618 8.43937L20.6894 8.25746L19.9618 8.43937C20.0012 8.59715 19.8819 8.75 19.7192 8.75H4.28078C4.11813 8.75 3.99879 8.59715 4.03824 8.43937L4.53824 6.43937Z" fill="#E7EDFF" stroke="#A8B8E1" stroke-width="1.5"/>
+<path id="Rectangle 24" d="M3.86879 11.5276C3.85234 11.3795 3.96826 11.25 4.11726 11.25H19.8827C20.0317 11.25 20.1477 11.3795 20.1312 11.5276L19.3534 18.5276C19.3394 18.6542 19.2323 18.75 19.105 18.75H4.89504C4.76766 18.75 4.66064 18.6542 4.64657 18.5276L3.86879 11.5276Z" fill="#E7EDFF" stroke="#A8B8E1" stroke-width="1.5"/>
+<rect id="Rectangle 27" x="7.75" y="6.25" width="8.5" height="12.5" fill="#E7EDFF" stroke="#A8B8E1" stroke-width="1.5"/>
+</g>
+</svg>
