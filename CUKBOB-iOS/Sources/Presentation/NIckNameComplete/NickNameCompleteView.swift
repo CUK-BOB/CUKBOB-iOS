@@ -41,16 +41,16 @@ struct NickNameCompleteView: View {
     }
 }
 
-// MARK: - subviews
+// MARK: - Subviews
 
 private extension NickNameCompleteView {
     var titleSection: some View {
-        VStack(alignment: .center, spacing: 4) {
+        VStack(alignment: .center, spacing: Screen.height(4)) {
             CUKBOBText("\(nickName)님!", fontType: .title03, color: Color(.blue500))
             
             CUKBOBText("학식 확인하러 가볼까요?", fontType: .heading02, color: Color(.blue300))
         }
-        .padding(.top, Screen.height(148))
+        .padding(.top, Screen.height(72))
         .padding(.bottom, Screen.height(52))
     }
     
@@ -66,8 +66,8 @@ private extension NickNameCompleteView {
         CUKBOBButton(isEnabled: .constant(true), title: "확인") {
             navigationManager.dissmissLoginView()
         }
-        .padding(.horizontal, 20)
-        .padding(.bottom, 32)
+        .padding(.horizontal, Screen.width(27))
+        .padding(.bottom, Screen.height(11))
     }
 }
 

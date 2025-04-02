@@ -25,6 +25,8 @@ struct NickNameView: View {
                 }
             
             VStack(alignment: .leading, spacing: 0) {
+                logoSection
+                
                 titleSection
                 
                 nickNameTextFieldWithButtonSection
@@ -39,18 +41,28 @@ struct NickNameView: View {
     }
 }
 
-// MARK: - subviews
+// MARK: - Subviews
 
 private extension NickNameView {
+    var logoSection: some View {
+        Image(.cukbob)
+            .resizable()
+            .renderingMode(.original)
+            .aspectRatio(contentMode: .fit)
+            .frame(width: Screen.width(85), height: Screen.height(17))
+            .padding(.leading, Screen.width(27))
+            .padding(.top, Screen.height(14))
+    }
+    
     var titleSection: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: Screen.height(6)) {
             CUKBOBText("닉네임을 입력해주세요", fontType: .title03, color: Color(.blue500))
             
             CUKBOBText("가톨릭대 학식 정보가 기다리고 있어요 !", fontType: .body02, color: Color(.blue300))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, 20)
-        .padding(.top, Screen.height(169))
+        .padding(.horizontal, Screen.width(27))
+        .padding(.top, Screen.height(94))
         .padding(.bottom, Screen.height(67))
     }
     
@@ -63,7 +75,7 @@ private extension NickNameView {
             viewModel.isConfirmButtonEnabled = true
             hideKeyboard()
         }
-        .padding(.horizontal, 20)
+        .padding(.horizontal, Screen.width(27))
     }
     
     var confirmButtonSection: some View {
@@ -74,8 +86,8 @@ private extension NickNameView {
             navigationManager.navigate(to: .nickNameComplete(nickName: viewModel.getNickName))
         }
         .animation(.default, value: viewModel.isConfirmButtonEnabled)
-        .padding(.horizontal, 20)
-        .padding(.bottom, 32)
+        .padding(.horizontal, Screen.width(27))
+        .padding(.bottom, Screen.height(11))
     }
 }
 
