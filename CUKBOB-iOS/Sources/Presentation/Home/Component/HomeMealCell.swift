@@ -12,6 +12,7 @@ struct HomeMealCell: View {
     // MARK: - Property
     
     @State private var isExpanded: Bool = false
+    private let restaurant: Restaurant
     
     // 임시 메뉴
     private var meals: [String] = [
@@ -28,20 +29,26 @@ struct HomeMealCell: View {
         "배추김치또머겅",
     ]
     
+    // MARK: - Initializer
+    
+    init(restaurant: Restaurant) {
+        self.restaurant = restaurant
+    }
+    
     // MARK: - body
     
     var body: some View {
         ZStack {
             VStack(spacing: Screen.height(4)) {
                 HStack(spacing: 0) {
-                    Image(.tempIcon)
+                    Image(restaurant.icon)
                         .resizable()
                         .renderingMode(.original)
                         .aspectRatio(contentMode: .fit)
                         .frame(width: Screen.width(18), height: Screen.height(18))
                         .padding(.trailing, Screen.width(4))
                     
-                    CUKBOBText("카페 보나", fontType: .body01, color: Color(.blue500))
+                    CUKBOBText(restaurant.title, fontType: .body01, color: Color(.blue500))
                         .padding(.trailing, Screen.width(8))
                     
                     CUKBOBText("08:00 ~ 09:30", fontType: .body01, color: Color(.gray200))
@@ -51,7 +58,7 @@ struct HomeMealCell: View {
                     Button {
                         
                     } label: {
-                        Image(.tempIcon)
+                        Image(.arrowRight)
                             .resizable()
                             .renderingMode(.original)
                             .aspectRatio(contentMode: .fit)
@@ -85,7 +92,7 @@ struct HomeMealCell: View {
                             .padding(.vertical, Screen.height(16))
                         
                         HStack(spacing: 4) {
-                            Image(.tempIcon)
+                            Image(.money)
                                 .resizable()
                                 .renderingMode(.original)
                                 .aspectRatio(contentMode: .fit)
@@ -109,5 +116,5 @@ struct HomeMealCell: View {
 }
 
 #Preview {
-    HomeMealCell()
+    HomeMealCell(restaurant: .cafeBona)
 }
