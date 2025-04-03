@@ -92,7 +92,6 @@ struct HomeMealCell: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, Screen.height(16))
                     }
-                    .transition(.move(edge: .top))
                     .transition(.opacity)
                 }
             }
@@ -102,10 +101,6 @@ struct HomeMealCell: View {
         }
         .clipped()
     }
-}
-
-private extension HomeMealCell {
-    
 }
 
 #Preview {
