@@ -21,7 +21,11 @@ struct HomeMealCell: View {
         "배추김치",
         "단호박크로켓*케찹",
         "배추김치또머겅",
-        "너비아니달걀전*참나물생채"
+        "너비아니달걀전*참나물생채",
+        "배추김치또머겅",
+        "배추김치또머겅",
+        "배추김치또머겅",
+        "배추김치또머겅",
     ]
     
     // MARK: - body
@@ -96,8 +100,9 @@ struct HomeMealCell: View {
                 }
             }
             .padding(.horizontal, Screen.width(24))
-            .background(.white)
+            .background(Color(.gray0))
             .clipShape(RoundedRectangle(cornerRadius: 12))
+            .padding(.bottom, Screen.height(12))
         }
         .clipped()
     }

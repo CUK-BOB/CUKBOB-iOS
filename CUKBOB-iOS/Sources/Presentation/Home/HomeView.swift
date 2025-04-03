@@ -23,12 +23,14 @@ struct HomeView: View {
                     hideKeyboard()
                 }
             
-            VStack(spacing: Screen.height(0)) {
-                guiSection
-                
-                scrollViewSection
+            ScrollView(.vertical) {
+                VStack(spacing: Screen.height(0)) {
+                    guiSection
+                    
+                    homeMealSection
+                }
             }
-            .ignoresSafeArea(edges: .top)
+            .clipped()
         }
         .navigationBarBackButtonHidden()
     }
@@ -43,20 +45,39 @@ private extension HomeView {
             .renderingMode(.original)
             .aspectRatio(contentMode: .fill)
             .frame(maxWidth: .infinity)
-            .frame(height: Screen.width(200))
+            .frame(height: Screen.width(120))
             .clipped()
             
     }
     
-    var scrollViewSection: some View {
-        ScrollView(.vertical) {
-            LazyVStack(alignment: .center, spacing: Screen.height(012), pinnedViews: [.sectionHeaders]) {
+    var timeSelectSection: some View {
+        HStack(spacing: 20) {
+            HomeMealTimeButton(mealTime: .morning) {
+                print("조식")
+            }
+            
+            HomeMealTimeButton(mealTime: .lunch) {
+                print("중식")
+            }
+            
+            HomeMealTimeButton(mealTime: .dinner) {
+                print("석식")
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, Screen.height(20))
+        .background(Color(.blue100))
+    }
+    
+    var homeMealSection: some View {
+        LazyVStack(alignment: .center, spacing: Screen.height(0), pinnedViews: [.sectionHeaders]) {
+            Section(header: timeSelectSection) {
                 HomeMealCell()
                 HomeMealCell()
                 HomeMealCell()
             }
-            .padding(.horizontal, Screen.width(25))
         }
+        .padding(.horizontal, Screen.width(24))
     }
 }
 
