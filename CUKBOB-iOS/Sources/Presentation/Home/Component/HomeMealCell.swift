@@ -12,10 +12,9 @@ struct HomeMealCell: View {
     // MARK: - Properties
     
     @State private var isExpanded: Bool = false
-//    private var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
     private var columns: [GridItem] = [
-        GridItem(.flexible(), spacing: 23, alignment: nil),
-        GridItem(.flexible(), spacing: 23, alignment: nil)
+        GridItem(.flexible(), spacing: Screen.width(23), alignment: nil),
+        GridItem(.flexible(), spacing: Screen.width(23), alignment: nil)
     ]
     private let restaurant: Restaurant
     
@@ -76,7 +75,7 @@ struct HomeMealCell: View {
                 .frame(maxWidth: .infinity)
                 .background(.white)
                 .onTapGesture {
-                    withAnimation(.bouncy(duration: 0.3)) {
+                    withAnimation(.spring(duration: 0.5, bounce: 0.2)) {
                         isExpanded.toggle()
                     }
                 }
