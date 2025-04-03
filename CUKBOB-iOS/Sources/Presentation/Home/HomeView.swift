@@ -55,8 +55,8 @@ private extension HomeView {
                 HomeMealCell()
                 HomeMealCell()
             }
+            .padding(.horizontal, Screen.width(25))
         }
-        .padding(.horizontal, Screen.width(25))
     }
 }
 
