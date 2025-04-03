@@ -9,9 +9,10 @@ import SwiftUI
 
 struct HomeView: View {
     
-    // MARK: - Property
+    // MARK: - Properties
     
     @EnvironmentObject var navigationManager: NavigationManager
+    @StateObject var viewModel: HomeViewModel
     
     // MARK: - body
     
@@ -23,18 +24,20 @@ struct HomeView: View {
                     hideKeyboard()
                 }
             
-            VStack(spacing: Screen.height(0)) {
-                guiSection
-                
-                scrollViewSection
+            ScrollView(.vertical) {
+                VStack(spacing: Screen.height(0)) {
+                    guiSection
+                    
+                    homeMealSection
+                }
             }
-            .ignoresSafeArea(edges: .top)
+            .clipped()
         }
         .navigationBarBackButtonHidden()
     }
 }
 
-// MARK: - Subview
+// MARK: - Subviews
 
 private extension HomeView {
     var guiSection: some View {
@@ -43,24 +46,44 @@ private extension HomeView {
             .renderingMode(.original)
             .aspectRatio(contentMode: .fill)
             .frame(maxWidth: .infinity)
-            .frame(height: Screen.width(200))
+            .frame(height: Screen.width(120))
             .clipped()
             
     }
     
-    var scrollViewSection: some View {
-        ScrollView(.vertical) {
-            LazyVStack(alignment: .center, spacing: Screen.height(012), pinnedViews: [.sectionHeaders]) {
-                HomeMealCell()
-                HomeMealCell()
-                HomeMealCell()
+    var timeSelectSection: some View {
+        HStack(spacing: 20) {
+            HomeMealTimeButton(viewModel: viewModel, mealTime: .morning) {
+                viewModel.selectMealTime(.morning)
+            }
+            
+            HomeMealTimeButton(viewModel: viewModel, mealTime: .lunch) {
+                viewModel.selectMealTime(.lunch)
+            }
+            
+            HomeMealTimeButton(viewModel: viewModel, mealTime: .dinner) {
+                viewModel.selectMealTime(.dinner)
             }
         }
-        .padding(.horizontal, Screen.width(25))
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, Screen.height(20))
+        .background(Color(.blue100))
+    }
+    
+    var homeMealSection: some View {
+        LazyVStack(alignment: .center, spacing: Screen.height(0), pinnedViews: [.sectionHeaders]) {
+            Section(header: timeSelectSection) {
+                HomeMealCell(restaurant: .cafeBona)
+                HomeMealCell(restaurant: .buonpranzoNoodle)
+                HomeMealCell(restaurant: .buonpranzoRice)
+                HomeMealCell(restaurant: .cafeMensa)
+            }
+        }
+        .padding(.horizontal, Screen.width(24))
     }
 }
 
 #Preview {
-    HomeView()
+    HomeView(viewModel: HomeViewModel())
         .environmentObject(NavigationManager())
 }

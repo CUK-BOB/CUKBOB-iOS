@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CUKBOBButton: View {
     
-    // MARK: - Property
+    // MARK: - Properties
     
     @Binding var isEnabled: Bool
     var title: String
@@ -35,6 +35,7 @@ struct CUKBOBButton: View {
                 .background(isEnabled ? Color(.blue500) : Color(.gray0))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
         }
+        .buttonStyle(.plain)
         .disabled(!isEnabled)
     }
 }

@@ -5,7 +5,7 @@
 //  Created by 김승원 on 3/28/25.
 //
 
-import Foundation
+import SwiftUI
 
 enum MealTime {
     case morning
@@ -20,6 +20,17 @@ enum MealTime {
             return "중식"
         case .dinner:
             return "석식"
+        }
+    }
+    
+    var icon: ImageResource {
+        switch self {
+        case .morning:
+            return .morning
+        case .lunch:
+            return .lunch
+        case .dinner:
+            return .dinner
         }
     }
 }
