@@ -12,6 +12,7 @@ struct HomeView: View {
     // MARK: - Property
     
     @EnvironmentObject var navigationManager: NavigationManager
+    @StateObject var viewModel: HomeViewModel
     
     // MARK: - body
     
@@ -52,16 +53,16 @@ private extension HomeView {
     
     var timeSelectSection: some View {
         HStack(spacing: 20) {
-            HomeMealTimeButton(mealTime: .morning) {
-                print("조식")
+            HomeMealTimeButton(viewModel: viewModel, mealTime: .morning) {
+                viewModel.selectMealTime(.morning)
             }
             
-            HomeMealTimeButton(mealTime: .lunch) {
-                print("중식")
+            HomeMealTimeButton(viewModel: viewModel, mealTime: .lunch) {
+                viewModel.selectMealTime(.lunch)
             }
             
-            HomeMealTimeButton(mealTime: .dinner) {
-                print("석식")
+            HomeMealTimeButton(viewModel: viewModel, mealTime: .dinner) {
+                viewModel.selectMealTime(.dinner)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -82,6 +83,6 @@ private extension HomeView {
 }
 
 #Preview {
-    HomeView()
+    HomeView(viewModel: HomeViewModel())
         .environmentObject(NavigationManager())
 }

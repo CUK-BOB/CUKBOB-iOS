@@ -16,8 +16,8 @@ struct NickNameTextFieldWithButton: View {
     
     // MARK: - Initializer
     
-    init(nickNameViewModel: NickNameViewModel, onTap: (() -> Void)? = nil) {
-        self.viewModel = nickNameViewModel
+    init(viewModel: NickNameViewModel, onTap: (() -> Void)? = nil) {
+        self.viewModel = viewModel
         self.onTap = onTap
     }
     
@@ -59,6 +59,7 @@ struct NickNameTextFieldWithButton: View {
                         .background(viewModel.isNickNameButtonEnabled ? Color(.blue500) : Color(.blue200))
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
+                .buttonStyle(.plain)
                 .animation(.default, value: viewModel.isNickNameButtonEnabled)
                 .disabled(!viewModel.isNickNameButtonEnabled)
             }
@@ -82,5 +83,5 @@ struct NickNameTextFieldWithButton: View {
 }
 
 #Preview {
-    NickNameTextFieldWithButton(nickNameViewModel: NickNameViewModel())
+    NickNameTextFieldWithButton(viewModel: NickNameViewModel())
 }

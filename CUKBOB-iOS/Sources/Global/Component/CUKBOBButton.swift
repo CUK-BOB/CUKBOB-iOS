@@ -35,6 +35,7 @@ struct CUKBOBButton: View {
                 .background(isEnabled ? Color(.blue500) : Color(.gray0))
                 .clipShape(RoundedRectangle(cornerRadius: 12))
         }
+        .buttonStyle(.plain)
         .disabled(!isEnabled)
     }
 }

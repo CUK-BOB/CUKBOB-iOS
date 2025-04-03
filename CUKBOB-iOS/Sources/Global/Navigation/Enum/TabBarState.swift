@@ -48,7 +48,7 @@ extension TabBarState {
     func build() -> some View {
         switch self {
         case .home:
-            HomeView()
+            HomeView(viewModel: HomeViewModel())
         case .weeklyMenu:
             Text("weeklyMenu") // 추후 수정
         case .foodAndBeverage:

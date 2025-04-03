@@ -67,7 +67,7 @@ private extension NickNameView {
     }
     
     var nickNameTextFieldWithButtonSection: some View {
-        NickNameTextFieldWithButton(nickNameViewModel: viewModel) {
+        NickNameTextFieldWithButton(viewModel: viewModel) {
             /*
              Todo: 닉네임 중복 확인 API 호출
              */

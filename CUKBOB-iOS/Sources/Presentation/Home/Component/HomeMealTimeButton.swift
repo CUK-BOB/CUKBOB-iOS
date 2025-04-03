@@ -11,12 +11,14 @@ struct HomeMealTimeButton: View {
     
     // MARK: - Property
     
+    @ObservedObject var viewModel: HomeViewModel
     private let mealTime: MealTime
     var onTap: (() -> Void)?
     
     // MARK: - Initializer
     
-    init(mealTime: MealTime, onTap: (() -> Void)? = nil) {
+    init(viewModel: HomeViewModel, mealTime: MealTime, onTap: (() -> Void)? = nil) {
+        self.viewModel = viewModel
         self.mealTime = mealTime
         self.onTap = onTap
     }
@@ -38,12 +40,14 @@ struct HomeMealTimeButton: View {
             }
             .padding(.horizontal, Screen.width(12))
             .padding(.vertical, Screen.height(4))
-            .background(Color(.blue0))
+            .background(viewModel.mealTime == mealTime ? Color(.gray0) : Color(.blue0))
             .clipShape(RoundedRectangle(cornerRadius: 12))
         }
+        .buttonStyle(.plain)
+        .animation(.linear(duration: 0.2), value: viewModel.mealTime)
     }
 }
 
 #Preview {
-    HomeMealTimeButton(mealTime: .morning)
+    HomeMealTimeButton(viewModel: HomeViewModel(), mealTime: .morning)
 }
