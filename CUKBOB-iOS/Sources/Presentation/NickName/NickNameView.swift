@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NickNameView: View {
     
-    // MARK: - Property
+    // MARK: - Properties
     
     @EnvironmentObject var navigationManager: NavigationManager
     @StateObject var viewModel: NickNameViewModel

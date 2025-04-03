@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeMealTimeButton: View {
     
-    // MARK: - Property
+    // MARK: - Properties
     
     @ObservedObject var viewModel: HomeViewModel
     private let mealTime: MealTime

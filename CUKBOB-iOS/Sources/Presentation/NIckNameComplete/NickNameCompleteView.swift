@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NickNameCompleteView: View {
     
-    // MARK: - Property
+    // MARK: - Properties
     
     @EnvironmentObject var navigationManager: NavigationManager
     private let nickName: String

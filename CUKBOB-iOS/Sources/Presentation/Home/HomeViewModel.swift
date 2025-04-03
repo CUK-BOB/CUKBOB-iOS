@@ -15,6 +15,5 @@ final class HomeViewModel: ObservableObject {
 extension HomeViewModel {
     func selectMealTime(_ mealTime: MealTime) {
         self.mealTime = mealTime
-        print("HomeViewModel: \(mealTime.text)")
     }
 }

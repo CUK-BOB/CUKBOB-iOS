@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     
-    // MARK: - Property
+    // MARK: - Properties
     
     @EnvironmentObject var navigationManager: NavigationManager
     

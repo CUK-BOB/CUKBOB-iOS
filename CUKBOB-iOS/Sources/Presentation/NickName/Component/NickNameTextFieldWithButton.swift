@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NickNameTextFieldWithButton: View {
     
-    // MARK: - Property
+    // MARK: - Properties
 
     @ObservedObject var viewModel: NickNameViewModel
     var onTap: (() -> Void)?

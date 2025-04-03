@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CUKBOBButton: View {
     
-    // MARK: - Property
+    // MARK: - Properties
     
     @Binding var isEnabled: Bool
     var title: String

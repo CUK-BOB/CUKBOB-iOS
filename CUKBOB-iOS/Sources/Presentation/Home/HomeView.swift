@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    // MARK: - Property
+    // MARK: - Properties
     
     @EnvironmentObject var navigationManager: NavigationManager
     @StateObject var viewModel: HomeViewModel
@@ -37,7 +37,7 @@ struct HomeView: View {
     }
 }
 
-// MARK: - Subview
+// MARK: - Subviews
 
 private extension HomeView {
     var guiSection: some View {
@@ -76,6 +76,7 @@ private extension HomeView {
                 HomeMealCell(restaurant: .cafeBona)
                 HomeMealCell(restaurant: .buonpranzoNoodle)
                 HomeMealCell(restaurant: .buonpranzoRice)
+                HomeMealCell(restaurant: .cafeMensa)
             }
         }
         .padding(.horizontal, Screen.width(24))
