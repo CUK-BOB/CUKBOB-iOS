@@ -26,11 +26,11 @@ enum MealTime {
     var icon: ImageResource {
         switch self {
         case .morning:
-            return .tempIcon
+            return .morning
         case .lunch:
-            return .tempIcon
+            return .lunch
         case .dinner:
-            return .tempIcon
+            return .dinner
         }
     }
 }
