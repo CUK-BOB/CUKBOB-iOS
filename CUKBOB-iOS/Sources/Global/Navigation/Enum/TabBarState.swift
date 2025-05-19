@@ -50,7 +50,7 @@ extension TabBarState {
         case .home:
             HomeView(viewModel: HomeViewModel())
         case .weeklyMenu:
-            Text("weeklyMenu") // 추후 수정
+            WeeklyMenuView(viewModel: WeeklyMenuViewModel())
         case .foodAndBeverage:
             Text("foodAndBeverage") // 추후 수정
         case .myPage:

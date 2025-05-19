@@ -12,6 +12,8 @@ final class HomeViewModel: ObservableObject {
     @Published var mealTime: MealTime = .morning
 }
 
+// MARK: - Functions
+
 extension HomeViewModel {
     func selectMealTime(_ mealTime: MealTime) {
         self.mealTime = mealTime
