@@ -17,21 +17,20 @@ struct HomeView: View {
     // MARK: - body
     
     var body: some View {
-        ZStack {
+        ScrollView(.vertical) {
+            VStack(spacing: Screen.height(0)) {
+                guiSection
+                
+                homeMealSection
+            }
+            .clipped()
+        }
+        .background {
             Color(.blue100)
                 .ignoresSafeArea()
                 .onTapGesture {
                     hideKeyboard()
                 }
-            
-            ScrollView(.vertical) {
-                VStack(spacing: Screen.height(0)) {
-                    guiSection
-                    
-                    homeMealSection
-                }
-            }
-            .clipped()
         }
         .navigationBarBackButtonHidden()
     }
