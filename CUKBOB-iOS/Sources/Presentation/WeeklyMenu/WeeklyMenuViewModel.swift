@@ -12,6 +12,7 @@ final class WeeklyMenuViewModel: ObservableObject {
     // MARK: - Properties
     
     @Published var selectedDate: Date = Date()
+    @Published var selectedRestaurant: Restaurant = .buonpranzoRice
     
     private let calendar: Calendar // 일단 일주일 고정이라서 @Published안 함
     private var weekDates: [Date] = []

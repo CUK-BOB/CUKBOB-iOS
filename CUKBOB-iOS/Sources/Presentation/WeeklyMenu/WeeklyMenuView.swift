@@ -16,25 +16,18 @@ struct WeeklyMenuView: View {
     // MARK: - body
     
     var body: some View {
-        GeometryReader { geometry in
-            VStack(alignment: .center, spacing: 0) {
-                Color(.gray0)
-                    .frame(height: geometry.safeAreaInsets.top)
-                
-                VStack(alignment: .center, spacing: Screen.height(0)) {
-                    horizontalCalendarSection
-                    
-                    Spacer()
-                }
-                .background {
-                    Color(.blue100)
-                        .onTapGesture {
-                            hideKeyboard()
-                        }
-                }
-            }
-            .ignoresSafeArea()
+        VStack(alignment: .center, spacing: 0) {
+            horizontalCalendarSection
+                .padding(.bottom, Screen.height(16))
+            
+            filterButtonSection
+            
+            Spacer()
         }
+        .background {
+            Color(.blue100)
+        }
+        .clipped()
     }
 }
 
@@ -62,7 +55,6 @@ private extension WeeklyMenuView {
                         }
                     }
                     
-                    // 이거 너무 똥코드인듯?
                     if index != 6 {
                         Spacer()
                     }
@@ -74,7 +66,35 @@ private extension WeeklyMenuView {
         .padding(.horizontal, Screen.width(41))
         .background(Color(.gray0))
         .cornerRadius(24, corners: [.bottomLeft, .bottomRight])
-        
+        .shadow(color: Color(.blue200), radius: 10)
+    }
+    
+    var filterButtonSection: some View {
+        VStack(alignment: .leading, spacing: Screen.height(8)) {
+            HStack(alignment: .center, spacing: Screen.width(8)) {
+                RestaurantFilterButton(viewModel: viewModel, restaurant: .buonpranzoRice) {
+                    viewModel.selectedRestaurant = .buonpranzoRice
+                }
+                
+                RestaurantFilterButton(viewModel: viewModel, restaurant: .buonpranzoNoodle) {
+                    viewModel.selectedRestaurant = .buonpranzoNoodle
+                }
+                
+                RestaurantFilterButton(viewModel: viewModel, restaurant: .cafeBona) {
+                    viewModel.selectedRestaurant = .cafeBona
+                }
+                
+                RestaurantFilterButton(viewModel: viewModel, restaurant: .cafeMensa) {
+                    viewModel.selectedRestaurant = .cafeMensa
+                }
+            }
+            
+            CUKBOBText(
+                "위치 : \(viewModel.selectedRestaurant.location)",
+                fontType: .label01,
+                color: Color(.blue200)
+            )
+        }
     }
 }
 

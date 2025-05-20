@@ -38,4 +38,17 @@ enum Restaurant {
             return .snackfood2
         }
     }
+    
+    var location: String {
+        switch self {
+        case .cafeBona:
+            return "학생미래인재관 1층"
+        case .buonpranzoNoodle:
+            return "학생미래인재관 2층"
+        case .buonpranzoRice:
+            return "학생미래인재관 2층"
+        case .cafeMensa:
+            return "김수환관 1층"
+        }
+    }
 }

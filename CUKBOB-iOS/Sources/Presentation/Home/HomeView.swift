@@ -52,15 +52,15 @@ private extension HomeView {
     
     var timeSelectSection: some View {
         HStack(spacing: 20) {
-            HomeMealTimeButton(viewModel: viewModel, mealTime: .morning) {
+            MealTimeFilterButton(viewModel: viewModel, mealTime: .morning) {
                 viewModel.selectMealTime(.morning)
             }
             
-            HomeMealTimeButton(viewModel: viewModel, mealTime: .lunch) {
+            MealTimeFilterButton(viewModel: viewModel, mealTime: .lunch) {
                 viewModel.selectMealTime(.lunch)
             }
             
-            HomeMealTimeButton(viewModel: viewModel, mealTime: .dinner) {
+            MealTimeFilterButton(viewModel: viewModel, mealTime: .dinner) {
                 viewModel.selectMealTime(.dinner)
             }
         }

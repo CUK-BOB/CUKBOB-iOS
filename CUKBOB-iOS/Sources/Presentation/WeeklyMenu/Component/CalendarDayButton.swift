@@ -63,5 +63,6 @@ struct CalendarDayButton: View {
                 }
             }
         }
+        .buttonStyle(.plain)
     }
 }

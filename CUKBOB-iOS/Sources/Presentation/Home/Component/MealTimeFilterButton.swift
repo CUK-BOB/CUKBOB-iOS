@@ -1,5 +1,5 @@
 //
-//  HomeMealTimeButton.swift
+//  MealTimeFilterButton.swift
 //  CUKBOB-iOS
 //
 //  Created by 김승원 on 4/3/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeMealTimeButton: View {
+struct MealTimeFilterButton: View {
     
     // MARK: - Properties
     
@@ -49,5 +49,5 @@ struct HomeMealTimeButton: View {
 }
 
 #Preview {
-    HomeMealTimeButton(viewModel: HomeViewModel(), mealTime: .morning)
+    MealTimeFilterButton(viewModel: HomeViewModel(), mealTime: .morning)
 }
