@@ -18,6 +18,9 @@ struct WeeklyMenuView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             horizontalCalendarSection
+                .padding(.bottom, Screen.height(16))
+            
+            filterButtonSection
             
             Spacer()
         }
@@ -64,6 +67,34 @@ private extension WeeklyMenuView {
         .background(Color(.gray0))
         .cornerRadius(24, corners: [.bottomLeft, .bottomRight])
         .shadow(color: Color(.blue200), radius: 10)
+    }
+    
+    var filterButtonSection: some View {
+        VStack(alignment: .leading, spacing: Screen.height(8)) {
+            HStack(alignment: .center, spacing: Screen.width(8)) {
+                RestaurantFilterButton(viewModel: viewModel, restaurant: .buonpranzoRice) {
+                    viewModel.selectedRestaurant = .buonpranzoRice
+                }
+                
+                RestaurantFilterButton(viewModel: viewModel, restaurant: .buonpranzoNoodle) {
+                    viewModel.selectedRestaurant = .buonpranzoNoodle
+                }
+                
+                RestaurantFilterButton(viewModel: viewModel, restaurant: .cafeBona) {
+                    viewModel.selectedRestaurant = .cafeBona
+                }
+                
+                RestaurantFilterButton(viewModel: viewModel, restaurant: .cafeMensa) {
+                    viewModel.selectedRestaurant = .cafeMensa
+                }
+            }
+            
+            CUKBOBText(
+                "위치 : \(viewModel.selectedRestaurant.location)",
+                fontType: .label01,
+                color: Color(.blue200)
+            )
+        }
     }
 }
 
