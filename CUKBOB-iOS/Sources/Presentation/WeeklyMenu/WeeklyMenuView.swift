@@ -22,6 +22,8 @@ struct WeeklyMenuView: View {
             
             filterButtonSection
             
+            WeeklyMenuSection
+            
             Spacer()
         }
         .background {
@@ -95,6 +97,29 @@ private extension WeeklyMenuView {
                 color: Color(.blue200)
             )
         }
+    }
+    
+    var WeeklyMenuSection: some View {
+        ScrollView {
+            LazyVStack(alignment: .center, spacing: Screen.height(10)) {
+                switch viewModel.selectedRestaurant {
+                case .cafeBona:
+                    WeeklyMenuCell(restaurant: .cafeBona, mealTime: .morning)
+                    WeeklyMenuCell(restaurant: .cafeBona, mealTime: .lunch)
+                    WeeklyMenuCell(restaurant: .cafeBona, mealTime: .dinner)
+                case .buonpranzoNoodle:
+                    WeeklyMenuCell(restaurant: .buonpranzoNoodle, mealTime: .lunch)
+                case .buonpranzoRice:
+                    WeeklyMenuCell(restaurant: .buonpranzoRice, mealTime: .lunch)
+                case .cafeMensa:
+                    WeeklyMenuCell(restaurant: .cafeMensa, mealTime: .lunch)
+                }
+            }
+            .padding(.horizontal, 24)
+            .padding(.top, Screen.height(8))
+            .padding(.bottom, Screen.height(16))
+        }
+        .padding(.top, Screen.height(8))
     }
 }
 
