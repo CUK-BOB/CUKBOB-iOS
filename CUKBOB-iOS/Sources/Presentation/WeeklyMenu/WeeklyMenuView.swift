@@ -22,7 +22,7 @@ struct WeeklyMenuView: View {
             
             filterButtonSection
             
-            WeeklyMenuSection
+            WeeklyMenuGridSection
             
             Spacer()
         }
@@ -99,7 +99,7 @@ private extension WeeklyMenuView {
         }
     }
     
-    var WeeklyMenuSection: some View {
+    var WeeklyMenuGridSection: some View {
         ScrollView {
             LazyVStack(alignment: .center, spacing: Screen.height(10)) {
                 switch viewModel.selectedRestaurant {
