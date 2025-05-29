@@ -52,7 +52,7 @@ extension TabBarState {
         case .weeklyMenu:
             WeeklyMenuView(viewModel: WeeklyMenuViewModel())
         case .foodAndBeverage:
-            Text("foodAndBeverage") // 추후 수정
+            FoodAndBeverageView(viewModel: FoodAndBeverageViewModel())
         case .myPage:
             Text("myPage") // 추후 수정
         }
