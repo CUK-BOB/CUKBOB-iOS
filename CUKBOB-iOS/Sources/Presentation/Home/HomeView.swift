@@ -52,16 +52,13 @@ private extension HomeView {
     
     var timeSelectSection: some View {
         HStack(spacing: 20) {
-            MealTimeFilterButton(viewModel: viewModel, mealTime: .morning) {
-                viewModel.selectMealTime(.morning)
-            }
-            
-            MealTimeFilterButton(viewModel: viewModel, mealTime: .lunch) {
-                viewModel.selectMealTime(.lunch)
-            }
-            
-            MealTimeFilterButton(viewModel: viewModel, mealTime: .dinner) {
-                viewModel.selectMealTime(.dinner)
+            ForEach(MealTime.allCases, id: \.self) { type in
+                MealTimeFilterButton(
+                    viewModel: viewModel,
+                    mealTime: type
+                ) {
+                    viewModel.selectMealTime(type)
+                }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

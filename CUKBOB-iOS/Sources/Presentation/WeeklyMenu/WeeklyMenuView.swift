@@ -74,20 +74,13 @@ private extension WeeklyMenuView {
     var filterButtonSection: some View {
         VStack(alignment: .leading, spacing: Screen.height(8)) {
             HStack(alignment: .center, spacing: Screen.width(8)) {
-                RestaurantFilterButton(viewModel: viewModel, restaurant: .buonpranzoRice) {
-                    viewModel.selectedRestaurant = .buonpranzoRice
-                }
-                
-                RestaurantFilterButton(viewModel: viewModel, restaurant: .buonpranzoNoodle) {
-                    viewModel.selectedRestaurant = .buonpranzoNoodle
-                }
-                
-                RestaurantFilterButton(viewModel: viewModel, restaurant: .cafeBona) {
-                    viewModel.selectedRestaurant = .cafeBona
-                }
-                
-                RestaurantFilterButton(viewModel: viewModel, restaurant: .cafeMensa) {
-                    viewModel.selectedRestaurant = .cafeMensa
+                ForEach(Restaurant.allCases, id: \.self) { type in
+                    RestaurantFilterButton(
+                        viewModel: viewModel,
+                        restaurant: type
+                    ) {
+                        viewModel.selectedRestaurant = type
+                    }
                 }
             }
             

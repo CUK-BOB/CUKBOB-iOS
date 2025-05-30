@@ -44,20 +44,14 @@ extension FoodAndBeverageView {
             }
             
             HStack(alignment: .center, spacing: Screen.width(32)) {
-                FoodAndBeverageFilterButton(viewModel: viewModel, foodAndBeverage: .all, namespace: animation) {
-                    viewModel.selectFoodAndBeverage(.all)
-                }
-                
-                FoodAndBeverageFilterButton(viewModel: viewModel, foodAndBeverage: .cafe, namespace: animation) {
-                    viewModel.selectFoodAndBeverage(.cafe)
-                }
-                
-                FoodAndBeverageFilterButton(viewModel: viewModel, foodAndBeverage: .salad, namespace: animation) {
-                    viewModel.selectFoodAndBeverage(.salad)
-                }
-                
-                FoodAndBeverageFilterButton(viewModel: viewModel, foodAndBeverage: .restaurant, namespace: animation) {
-                    viewModel.selectFoodAndBeverage(.restaurant)
+                ForEach(FoodAndBeverage.allCases, id: \.self) { type in
+                    FoodAndBeverageFilterButton(
+                        viewModel: viewModel,
+                        foodAndBeverage: type,
+                        namespace: animation
+                    ) {
+                        viewModel.selectFoodAndBeverage(type)
+                    }
                 }
             }
             .padding(.top, Screen.height(viewModel.shouldShowOriginIcon ? 26 : 19))

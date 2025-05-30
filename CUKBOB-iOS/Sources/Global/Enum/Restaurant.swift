@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-enum Restaurant {
-    case cafeBona
-    case buonpranzoNoodle
+enum Restaurant: CaseIterable, Hashable {
     case buonpranzoRice
+    case buonpranzoNoodle
+    case cafeBona
     case cafeMensa
     
     var title: String {
         switch self {
-        case .cafeBona:
-            return "카페 보나"
-        case .buonpranzoNoodle:
-            return "부온프란조_면"
         case .buonpranzoRice:
             return "부온프란조_밥"
+        case .buonpranzoNoodle:
+            return "부온프란조_면"
+        case .cafeBona:
+            return "카페 보나"
         case .cafeMensa:
             return "카페 멘사"
         }
@@ -28,11 +28,11 @@ enum Restaurant {
     
     var icon: ImageResource {
         switch self {
-        case .cafeBona:
+        case .buonpranzoRice:
             return .rice
         case .buonpranzoNoodle:
             return .noodle
-        case .buonpranzoRice:
+        case .cafeBona:
             return .rice
         case .cafeMensa:
             return .snackfood2
@@ -41,12 +41,12 @@ enum Restaurant {
     
     var location: String {
         switch self {
-        case .cafeBona:
-            return "학생미래인재관 1층"
-        case .buonpranzoNoodle:
-            return "학생미래인재관 2층"
         case .buonpranzoRice:
             return "학생미래인재관 2층"
+        case .buonpranzoNoodle:
+            return "학생미래인재관 2층"
+        case .cafeBona:
+            return "학생미래인재관 1층"
         case .cafeMensa:
             return "김수환관 1층"
         }
