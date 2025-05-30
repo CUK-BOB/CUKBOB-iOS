@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum FoodAndBeverage: CaseIterable {
+enum FoodAndBeverage: CaseIterable, Hashable {
     case all
     case cafe
     case salad

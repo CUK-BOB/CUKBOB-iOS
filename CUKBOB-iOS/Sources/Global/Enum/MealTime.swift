@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum MealTime {
+enum MealTime: CaseIterable, Hashable {
     case morning
     case lunch
     case dinner

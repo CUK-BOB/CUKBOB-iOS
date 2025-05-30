@@ -14,6 +14,11 @@ struct FoodAndBeverageView: View {
     @StateObject var viewModel: FoodAndBeverageViewModel
     @Namespace private var animation
     
+    private let columns = [
+        GridItem(.flexible(), spacing: Screen.width(23)),
+        GridItem(.flexible(), spacing: Screen.width(23))
+    ]
+    
     // MARK: - body
     
     var body: some View {
@@ -44,20 +49,14 @@ extension FoodAndBeverageView {
             }
             
             HStack(alignment: .center, spacing: Screen.width(32)) {
-                FoodAndBeverageFilterButton(viewModel: viewModel, foodAndBeverage: .all, namespace: animation) {
-                    viewModel.selectFoodAndBeverage(.all)
-                }
-                
-                FoodAndBeverageFilterButton(viewModel: viewModel, foodAndBeverage: .cafe, namespace: animation) {
-                    viewModel.selectFoodAndBeverage(.cafe)
-                }
-                
-                FoodAndBeverageFilterButton(viewModel: viewModel, foodAndBeverage: .salad, namespace: animation) {
-                    viewModel.selectFoodAndBeverage(.salad)
-                }
-                
-                FoodAndBeverageFilterButton(viewModel: viewModel, foodAndBeverage: .restaurant, namespace: animation) {
-                    viewModel.selectFoodAndBeverage(.restaurant)
+                ForEach(FoodAndBeverage.allCases, id: \.self) { type in
+                    FoodAndBeverageFilterButton(
+                        viewModel: viewModel,
+                        foodAndBeverage: type,
+                        namespace: animation
+                    ) {
+                        viewModel.selectFoodAndBeverage(type)
+                    }
                 }
             }
             .padding(.top, Screen.height(viewModel.shouldShowOriginIcon ? 26 : 19))
@@ -74,18 +73,18 @@ extension FoodAndBeverageView {
     
     var foodAndBeverageGridSection: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: Screen.height(12)) {
+            VStack(spacing: Screen.height(16)) {
                 scrollObservableView
                     .frame(height: Screen.height(170))
                 
-                WeeklyMenuCell(restaurant: .buonpranzoNoodle, mealTime: .dinner)
-                WeeklyMenuCell(restaurant: .buonpranzoNoodle, mealTime: .dinner)
-                WeeklyMenuCell(restaurant: .buonpranzoNoodle, mealTime: .dinner)
-                WeeklyMenuCell(restaurant: .buonpranzoNoodle, mealTime: .dinner)
-                WeeklyMenuCell(restaurant: .buonpranzoNoodle, mealTime: .dinner)
-                WeeklyMenuCell(restaurant: .buonpranzoNoodle, mealTime: .dinner)
+                LazyVGrid(columns: columns, spacing: Screen.height(20)) {
+                    ForEach (0..<20) { _ in
+                        FoodAndBeverageCell()
+                    }
+                }
             }
         }
+        .padding(.horizontal, Screen.width(24))
         .onPreferenceChange(ScrollOffsetKey.self) {
             viewModel.setOffset($0)
         }
