@@ -14,6 +14,11 @@ struct FoodAndBeverageView: View {
     @StateObject var viewModel: FoodAndBeverageViewModel
     @Namespace private var animation
     
+    private let columns = [
+        GridItem(.flexible(), spacing: Screen.width(23)),
+        GridItem(.flexible(), spacing: Screen.width(23))
+    ]
+    
     // MARK: - body
     
     var body: some View {
@@ -68,18 +73,18 @@ extension FoodAndBeverageView {
     
     var foodAndBeverageGridSection: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: Screen.height(12)) {
+            VStack(spacing: Screen.height(16)) {
                 scrollObservableView
                     .frame(height: Screen.height(170))
                 
-                WeeklyMenuCell(restaurant: .buonpranzoNoodle, mealTime: .dinner)
-                WeeklyMenuCell(restaurant: .buonpranzoNoodle, mealTime: .dinner)
-                WeeklyMenuCell(restaurant: .buonpranzoNoodle, mealTime: .dinner)
-                WeeklyMenuCell(restaurant: .buonpranzoNoodle, mealTime: .dinner)
-                WeeklyMenuCell(restaurant: .buonpranzoNoodle, mealTime: .dinner)
-                WeeklyMenuCell(restaurant: .buonpranzoNoodle, mealTime: .dinner)
+                LazyVGrid(columns: columns, spacing: Screen.height(20)) {
+                    ForEach (0..<20) { _ in
+                        FoodAndBeverageCell()
+                    }
+                }
             }
         }
+        .padding(.horizontal, Screen.width(24))
         .onPreferenceChange(ScrollOffsetKey.self) {
             viewModel.setOffset($0)
         }
