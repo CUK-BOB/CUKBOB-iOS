@@ -31,10 +31,6 @@ struct WeeklyMenuCell: View {
         "단호박크로켓*케찹",
         "배추김치또머겅",
         "너비아니달걀전*참나물생채",
-        "배추김치또머겅",
-        "배추김치또머겅",
-        "배추김치또머겅",
-        "배추김치또머겅",
     ]
 
     // MARK: - Initializer
@@ -77,13 +73,14 @@ private extension WeeklyMenuCell {
                 CUKBOBText("5,500원", fontType: .label02, color: Color(.blue600))
             }
             .padding(.bottom, 24)
-            
-            let mealString = defaultMeals.joined(separator: "       ")
-            
-            Text(mealString)
-                .applyCUKBOBFont(.label01, lineSpacing: Screen.height(12))
-                .foregroundStyle(Color(.blue800))
-                .frame(maxWidth: .infinity, alignment: .leading)
+
+            FlowTextView(
+                items: defaultMeals,
+                fontType: .label01,
+                textColor: Color(.blue800),
+                horizontalSpacing: Screen.width(21),
+                verticalSpacing: Screen.height(12)
+            )
             
         }
         .padding(24)
