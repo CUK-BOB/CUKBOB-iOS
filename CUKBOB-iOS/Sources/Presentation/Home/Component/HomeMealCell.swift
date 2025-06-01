@@ -12,27 +12,24 @@ struct HomeMealCell: View {
     // MARK: - Properties
     
     @State private var isExpanded: Bool = false
+    
+    private let restaurant: Restaurant
     private var columns: [GridItem] = [
         GridItem(.flexible(), spacing: Screen.width(23), alignment: nil),
         GridItem(.flexible(), spacing: Screen.width(23), alignment: nil)
     ]
-    private let restaurant: Restaurant
     
     /*
      Todo: 아래 임시 메뉴 지우고 음식이름배열, 가격 배열 주입받기
      */
     private var defaultMeals: [String] = [
-        "제육볶음",
-        "쌀밥",
-        "들꺠무채국",
+        "콩나물밥*양념장",
+        "된장찌개",
+        "명엽채볶음",
         "배추김치",
-        "단호박크로켓*케찹",
-        "배추김치또머겅",
-        "너비아니달걀전*참나물생채",
-        "배추김치또머겅",
-        "배추김치또머겅",
-        "배추김치또머겅",
-        "배추김치또머겅",
+        "떡갈비흑임자소스구이",
+        "파래김양념장",
+        "배추김치또머겅ㅋㅋ"
     ]
     
     // MARK: - Initializer
@@ -103,14 +100,15 @@ struct HomeMealCell: View {
 
 private extension HomeMealCell {
     var defaultMealCell: some View {
-        VStack(spacing: 0) {
-            let mealString = defaultMeals.joined(separator: "       ")
-            
-            Text(mealString)
-                .applyCUKBOBFont(.label01, lineSpacing: Screen.height(12))
-                .foregroundStyle(Color(.blue800))
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, Screen.height(8)) // 16 + 8 = 24
+        VStack(alignment: .leading, spacing: 0) {
+            FlowTextView(
+                items: defaultMeals,
+                fontType: .label01,
+                textColor: Color(.blue800),
+                horizontalSpacing: Screen.width(16),
+                verticalSpacing: Screen.height(12)
+            )
+            .padding(.top, Screen.height(8))
             
             Rectangle()
                 .fill(Color(.blue100))
@@ -130,7 +128,6 @@ private extension HomeMealCell {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, Screen.height(16))
         }
-        .transition(.opacity)
     }
     
     var cafeMensaCell: some View {
