@@ -93,7 +93,7 @@ struct HomeMealCell: View {
             }
             .padding(.horizontal, Screen.width(24))
             .background(Color(.gray0))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .cornerRadius(12, corners: .allCorners)
             .padding(.bottom, Screen.height(12))
         }
         .clipped()

@@ -33,7 +33,7 @@ struct CUKBOBButton: View {
                 .frame(height: Screen.height(60))
                 .frame(maxWidth: .infinity)
                 .background(isEnabled ? Color(.blue500) : Color(.gray0))
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .cornerRadius(12, corners: .allCorners)
         }
         .buttonStyle(.plain)
         .disabled(!isEnabled)

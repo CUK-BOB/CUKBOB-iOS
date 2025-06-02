@@ -57,7 +57,7 @@ struct NickNameTextFieldWithButton: View {
                     CUKBOBText("중복검사", fontType: .label02, color: Color(.gray0))
                         .frame(width: Screen.width(65), height: Screen.height(40), alignment: .center)
                         .background(viewModel.isNickNameButtonEnabled ? Color(.blue500) : Color(.blue200))
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .cornerRadius(12, corners: .allCorners)
                 }
                 .buttonStyle(.plain)
                 .animation(.default, value: viewModel.isNickNameButtonEnabled)

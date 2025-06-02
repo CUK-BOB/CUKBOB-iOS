@@ -24,7 +24,7 @@ struct FoodAndBeverageCell: View {
                         .aspectRatio(contentMode: .fill)
                         .frame(maxWidth: .infinity)
                         .frame(height: Screen.height(88))
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .cornerRadius(12, corners: .allCorners)
                     
                     HStack(alignment: .center, spacing: Screen.width(3)) {
                         Image(.tempIcon)
@@ -54,7 +54,7 @@ struct FoodAndBeverageCell: View {
                     .padding(.horizontal, Screen.width(16))
             }
             .background(Color(.blue0))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .cornerRadius(12, corners: .allCorners)
         }
         .buttonStyle(.plain)
     }
