@@ -35,7 +35,7 @@ struct RestaurantFilterButton: View {
                 .background(
                     viewModel.selectedRestaurant == restaurant ? Color(.gray0) : Color(.blue0)
                 )
-                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .cornerRadius(15, corners: .allCorners)
         }
         .buttonStyle(.plain)
         .animation(.linear(duration: 0.2), value: viewModel.selectedRestaurant)

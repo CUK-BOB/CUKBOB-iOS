@@ -42,7 +42,7 @@ private extension WeeklyMenuView {
                 .padding(.horizontal, Screen.width(12))
                 .padding(.vertical, Screen.height(4))
                 .background(Color(.blue600))
-                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .clipShape(Capsule())
             
             HStack(alignment: .top, spacing: 0) {
                 ForEach (0..<7) { index in

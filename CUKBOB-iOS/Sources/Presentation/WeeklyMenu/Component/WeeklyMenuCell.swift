@@ -85,7 +85,7 @@ private extension WeeklyMenuCell {
         }
         .padding(24)
         .background(Color(.blue0))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .cornerRadius(12, corners: .allCorners)
     }
     
     var cafeMensaCell: some View {
@@ -119,7 +119,7 @@ private extension WeeklyMenuCell {
         }
         .padding(24)
         .background(Color(.blue0))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .cornerRadius(12, corners: .allCorners)
     }
 }
 

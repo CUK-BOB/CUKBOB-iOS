@@ -41,7 +41,7 @@ struct MealTimeFilterButton: View {
             .padding(.horizontal, Screen.width(12))
             .padding(.vertical, Screen.height(4))
             .background(viewModel.mealTime == mealTime ? Color(.gray0) : Color(.blue0))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(Capsule())
         }
         .buttonStyle(.plain)
         .animation(.linear(duration: 0.2), value: viewModel.mealTime)
