@@ -22,6 +22,7 @@ struct SeeReviewView: View {
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
             Spacer()
         }
+        .customNavigationBar(.seeReview(backAction: navigationManager.popBack))
         .background(.red)
         .onDidAppear {
             withAnimation(.easeOut(duration: 0.15)) {
