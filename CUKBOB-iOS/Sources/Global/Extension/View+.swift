@@ -19,6 +19,8 @@ extension View {
     
     func onDidAppear(perform: @escaping () -> Void) -> some View {
         background(ViewDidAppearModifier(onDidAppear: perform))
+            .ignoresSafeArea(edges: .bottom)
+            .background(Color(.blue100))
     }
 }
 

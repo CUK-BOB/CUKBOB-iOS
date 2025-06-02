@@ -26,9 +26,9 @@ struct CustomNavigationBarModifier<C, L, R>: ViewModifier where C: View, L: View
     }
     
     func body(content: Content) -> some View {
-        VStack {
+        VStack(spacing: Screen.height(0)) {
             ZStack(alignment: .center) {
-                HStack {
+                HStack(spacing: Screen.width(0)) {
                     self.leftView?()
                     
                     Spacer()
