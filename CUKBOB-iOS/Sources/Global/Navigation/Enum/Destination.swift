@@ -11,6 +11,7 @@ public enum Destination: Hashable {
     case temp
     case nickName
     case nickNameComplete(nickName: String)
+    case seeReview
 }
 
 // MARK: - Func
@@ -25,6 +26,8 @@ extension Destination {
             NickNameView(viewModel: NickNameViewModel())
         case .nickNameComplete(let nickName):
             NickNameCompleteView(nickName: nickName)
+        case .seeReview:
+            SeeReviewView(viewModel: SeeReviewViewModel())
         }
     }
 }

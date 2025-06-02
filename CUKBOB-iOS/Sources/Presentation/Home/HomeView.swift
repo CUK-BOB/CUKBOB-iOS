@@ -69,7 +69,9 @@ private extension HomeView {
     var homeMealSection: some View {
         LazyVStack(alignment: .center, spacing: Screen.height(0), pinnedViews: [.sectionHeaders]) {
             Section(header: timeSelectSection) {
-                HomeMealCell(restaurant: .cafeBona)
+                HomeMealCell(restaurant: .cafeBona) {
+                    navigationManager.navigate(to: .seeReview)
+                }
                 HomeMealCell(restaurant: .buonpranzoNoodle)
                 HomeMealCell(restaurant: .buonpranzoRice)
                 HomeMealCell(restaurant: .cafeMensa)
