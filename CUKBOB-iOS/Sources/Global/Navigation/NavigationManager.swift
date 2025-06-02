@@ -9,6 +9,8 @@ import SwiftUI
 
 final class NavigationManager: ObservableObject {
     
+    @Published var shouldHideTabBar: Bool = false
+    
     @Published var loginPath = NavigationPath()
     @Published var homePath = NavigationPath()
     @Published var weeklyMenuPath = NavigationPath()

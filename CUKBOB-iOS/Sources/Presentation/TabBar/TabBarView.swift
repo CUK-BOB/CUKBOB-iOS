@@ -36,7 +36,10 @@ struct TabBarView: View {
                 }
             }
             
-            CUKBOBTabBar(selectedTab: $navigationManager.selectedTab)
+            if !navigationManager.shouldHideTabBar {
+                CUKBOBTabBar(selectedTab: $navigationManager.selectedTab)
+                    .transition(.move(edge: .bottom))
+            }
         }
         .fullScreenCover(item: $navigationManager.fullScreenModal) { destination in
             destination.build()
