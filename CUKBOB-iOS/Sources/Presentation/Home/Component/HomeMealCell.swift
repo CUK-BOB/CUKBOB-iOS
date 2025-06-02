@@ -19,6 +19,8 @@ struct HomeMealCell: View {
         GridItem(.flexible(), spacing: Screen.width(23), alignment: nil)
     ]
     
+    var onTap: (() -> Void)?
+    
     /*
      Todo: 아래 임시 메뉴 지우고 음식이름배열, 가격 배열 주입받기
      */
@@ -32,10 +34,12 @@ struct HomeMealCell: View {
         "배추김치또머겅ㅋㅋ"
     ]
     
+    
     // MARK: - Initializer
     
-    init(restaurant: Restaurant) {
+    init(restaurant: Restaurant, onTap: (() -> Void)? = nil) {
         self.restaurant = restaurant
+        self.onTap = onTap
     }
     
     // MARK: - body
@@ -59,7 +63,7 @@ struct HomeMealCell: View {
                     Spacer()
                     
                     Button {
-                        
+                        onTap?()
                     } label: {
                         Image(.arrowRight)
                             .resizable()
