@@ -17,13 +17,15 @@ struct SeeReviewView: View {
     // MARK: - body
     
     var body: some View {
-        VStack {
-            Spacer()
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            Spacer()
+        ScrollView {
+            HStack {
+
+                Text("hello")
+                    .frame(maxWidth: .infinity)
+            }
         }
+        .background(Color(.blue100))
         .customNavigationBar(.seeReview(backAction: navigationManager.popBack))
-        .background(.red)
         .onDidAppear {
             withAnimation(.easeOut(duration: 0.15)) {
                 navigationManager.shouldHideTabBar = true
