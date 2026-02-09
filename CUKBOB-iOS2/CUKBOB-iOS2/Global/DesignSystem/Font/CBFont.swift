@@ -47,7 +47,7 @@ enum CBFont {
     
     var letterSpacing: CGFloat {
         switch self {
-        default: return CGFloat(-0) / 100 * adjustedSize
+        default: return CGFloat(-3) / 100 * adjustedSize
         }
     }
     
