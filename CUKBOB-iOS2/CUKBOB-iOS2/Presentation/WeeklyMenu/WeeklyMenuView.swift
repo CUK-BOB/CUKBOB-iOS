@@ -9,15 +9,42 @@ import SwiftUI
 
 struct WeeklyMenuView: View {
     
+    // MARK: - Properties
+    
     @EnvironmentObject private var appCoordinator: AppCoordinator
     
+    // MARK: - Body
+    
     var body: some View {
-        Text("Preview 미리보기")
-            .applyCBFont(.header01)
-            .background(.red)
-            .customNavigationBar(.weeklyMenu(myPageAction: {
-                appCoordinator.navigate(to: .myPage)
-            }))
+        VStack(alignment: .center, spacing: 0) {
+            weeklyCalendar
+            
+            ScrollView(.vertical) {
+                restaurantFilter
+            }
+        }
+        .customNavigationBar(.weeklyMenu(myPageAction: {
+            appCoordinator.navigate(to: .myPage)
+        }))
+    }
+}
+
+// MARK: - Subviews
+
+extension WeeklyMenuView {
+    private var weeklyCalendar: some View {
+        WeeklyCalendar()
+    }
+    
+    private var restaurantFilter: some View{
+        HStack(alignment: .center, spacing: 12.adjustedWidth) {
+            ForEach(0..<3) { _ in
+                RestaurantFilterButton()
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.top, 24.adjustedHeight)
+        .padding(.horizontal, 32.adjustedWidth)
     }
 }
 

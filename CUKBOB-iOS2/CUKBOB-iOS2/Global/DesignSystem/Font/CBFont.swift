@@ -72,7 +72,10 @@ enum CBFont {
     
     private var fontWeight: UIFont.Weight {
         switch self {
-        default: return .regular
+        case .header01, .header02, .subtitle01, .subtitle02, .subtitle03, .subtitle04, .caption02:
+            return .bold
+        case .body01, .body02, .caption01:
+            return .regular
         }
     }
     
