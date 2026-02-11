@@ -8,29 +8,29 @@
 import Foundation
 
 enum Weekday: Int, CaseIterable {
-    case sun = 0
-    case mon
-    case tue
-    case wed
-    case thu
-    case fri
-    case sat
+    case sunday = 1
+    case monday
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case saturday
     
-    var koreanSymbol: String {
+    var title: String {
         switch self {
-        case .sun:
+        case .sunday:
             return "일"
-        case .mon:
+        case .monday:
             return "월"
-        case .tue:
+        case .tuesday:
             return "화"
-        case .wed:
+        case .wednesday:
             return "수"
-        case .thu:
+        case .thursday:
             return "목"
-        case .fri:
+        case .friday:
             return "금"
-        case .sat:
+        case .saturday:
             return "토"
         }
     }

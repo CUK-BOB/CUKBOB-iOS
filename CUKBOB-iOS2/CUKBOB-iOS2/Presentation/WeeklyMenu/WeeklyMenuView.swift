@@ -12,6 +12,15 @@ struct WeeklyMenuView: View {
     // MARK: - Properties
     
     @EnvironmentObject private var appCoordinator: AppCoordinator
+    @StateObject private var viewModel: WeeklyMenuViewModel
+    
+    // MARK: - Initializer
+    
+    init() {
+        self._viewModel = StateObject(
+            wrappedValue: WeeklyMenuViewModel()
+        )
+    }
     
     // MARK: - Body
     
@@ -33,7 +42,9 @@ struct WeeklyMenuView: View {
 
 extension WeeklyMenuView {
     private var weeklyCalendar: some View {
-        WeeklyCalendar()
+        WeeklyCalendar(selectedDate: viewModel.selectedDate) { date in
+            viewModel.dispatch(.selectDate(date))
+        }
     }
     
     private var restaurantFilter: some View{
