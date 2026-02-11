@@ -11,7 +11,7 @@ import SwiftUI
 struct CUKBOB_iOS2App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
         }
     }
 }
