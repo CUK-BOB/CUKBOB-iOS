@@ -25,12 +25,17 @@ struct WeeklyMenuView: View {
     // MARK: - Body
     
     var body: some View {
-        VStack(alignment: .center, spacing: 0) {
+        VStack(alignment: .center, spacing: 12.adjustedHeight) {
             weeklyCalendar
             
-            ScrollView(.vertical) {
+            VStack(alignment: .leading, spacing: 0) {
                 restaurantFilter
+                
+                ScrollView(.vertical) {
+                    weeklyMenuList
+                }
             }
+            .padding(.horizontal, 32.adjustedWidth)
         }
         .customNavigationBar(.weeklyMenu(myPageAction: {
             appCoordinator.navigate(to: .myPage)
@@ -59,8 +64,11 @@ extension WeeklyMenuView {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.top, 24.adjustedHeight)
-        .padding(.horizontal, 32.adjustedWidth)
+        .padding(.vertical, 12.adjustedHeight)
+    }
+    
+    private var weeklyMenuList: some View {
+        WeeklyMenuCell(defaultWeeklyMenu: DefaultWeeklyMenu.mock, showsDivider: true)
     }
 }
 
