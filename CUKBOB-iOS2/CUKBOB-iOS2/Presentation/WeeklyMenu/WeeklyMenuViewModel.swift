@@ -14,6 +14,7 @@ final class WeeklyMenuViewModel: ObservableObject {
     
     @Published var selectedDate: Date = Date()
     @Published var selectedRestaurant: Restaurant = .buonpranzo
+    @Published var weeklyMenus: [WeeklyMenuRepresentable] = []
     
     // MARK: - Action
     

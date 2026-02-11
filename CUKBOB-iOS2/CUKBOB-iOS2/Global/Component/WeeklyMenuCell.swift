@@ -11,15 +11,13 @@ struct WeeklyMenuCell: View {
     
     // MARK: - Properties
     
-    private let defaultWeeklyMenu: DefaultWeeklyMenu
+    private let weeklyMenuType: WeeklyMenuType
     private let showsDivider: Bool
     
     // MARK: - Initializer
     
-    //TODO: - Model을 기본용, 멘사용 만들
-    
-    init(defaultWeeklyMenu: DefaultWeeklyMenu, showsDivider: Bool) {
-        self.defaultWeeklyMenu = defaultWeeklyMenu
+    init(weeklyMenuType: WeeklyMenuType, showsDivider: Bool) {
+        self.weeklyMenuType = weeklyMenuType
         self.showsDivider = showsDivider
     }
     
@@ -27,11 +25,12 @@ struct WeeklyMenuCell: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            title
-            
-            information
-            
-            menuChips
+            switch weeklyMenuType {
+            case .standard(let standardWeeklyMenu):
+                standardMenu(standardWeeklyMenu)
+            case .mensa(let mensaWeeklyMenu):
+                mensaMenu(mensaWeeklyMenu)
+            }
             
             if showsDivider {
                 divider
@@ -45,24 +44,84 @@ struct WeeklyMenuCell: View {
 // MARK: - Subviews
 
 extension WeeklyMenuCell {
-    private var title: some View {
-        Text("중식 (면)")
-            .applyCBFont(.subtitle02)
-            .foregroundStyle(.gray600)
-    }
-    
-    private var information: some View {
-        HStack(alignment: .center, spacing: 8.adjustedWidth) {
-            Text("11:00 - 14:00")
-            Text("5,500원")
+    private func standardMenu(_ standardWeeklyMenu: StandardWeeklyMenu) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(standardWeeklyMenu.mealTime.title)
+                .applyCBFont(.subtitle02)
+                .foregroundStyle(.gray600)
+            
+            HStack(alignment: .center, spacing: 8.adjustedWidth) {
+                Text(standardWeeklyMenu.operatingHours)
+                Text(standardWeeklyMenu.price)
+            }
+            .applyCBFont(.subtitle04)
+            .foregroundStyle(.blue200)
+            
+            MenuChips(standardWeeklyMenu.menus)
         }
-        .applyCBFont(.subtitle04)
-        .foregroundStyle(.blue200)
     }
     
-    private var menuChips: some View {
-        MenuChips(menus: ["콩나물 국", "쌀밥", "돈가스&케찹", "구이 김", "무말랭이 무침", "계란후라이", "배추김치"])
+    @ViewBuilder
+    private func mensaMenu(_ mensaWeeklyMenu: MensaWeeklyMenu) -> some View {
+        let columns = [
+            GridItem(.flexible()),
+            GridItem(.flexible())
+        ]
+
+        VStack(alignment: .leading, spacing: 0) {
+            Text(mensaWeeklyMenu.mealTime.title)
+                .applyCBFont(.subtitle02)
+                .foregroundStyle(.gray600)
+            
+            Text(mensaWeeklyMenu.operatingHours)
+                .applyCBFont(.subtitle04)
+                .foregroundStyle(.blue200)
+            
+            LazyVGrid(columns: columns, spacing: 8.adjustedHeight) {
+                ForEach(mensaWeeklyMenu.menuWithPrice, id: \.id) { menu in
+                    menuPriceRow(
+                        title: menu.title,
+                        price: menu.price
+                    )
+                }
+            }
+            .padding(.top, 12.adjustedHeight)
+
+            LazyVStack(alignment: .center, spacing: 8.adjustedHeight) {
+                ForEach(mensaWeeklyMenu.platterWithPrice, id: \.id) { platter in
+                    menuPriceRow(
+                        title: platter.title,
+                        price: platter.price
+                    )
+                }
+            }
+            .padding(.top, 8.adjustedHeight)
+        }
     }
+    
+    private func menuPriceRow(
+        title: String,
+        price: String
+    ) -> some View {
+        
+        HStack(alignment: .center, spacing: 0) {
+            
+            Text(title)
+                .frame(height: 20.adjustedHeight)
+                .applyCBFont(.subtitle03)
+                .padding(.vertical, 4.adjustedHeight)
+                .padding(.horizontal, 8.adjustedWidth)
+                .background(.gray200)
+                .cornerRadius(4, corners: .allCorners)
+            
+            Spacer()
+            
+            Text(price)
+                .applyCBFont(.subtitle04)
+        }
+        .foregroundStyle(.gray500)
+    }
+
     
     private var divider: some View {
         Rectangle()

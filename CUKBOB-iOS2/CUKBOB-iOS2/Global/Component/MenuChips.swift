@@ -18,7 +18,7 @@ struct MenuChips: View {
     
     // MARK: - Initializer
     
-    init(menus: [String]) {
+    init(_ menus: [String]) {
         self.menus = menus
     }
     
@@ -36,7 +36,6 @@ struct MenuChips: View {
 // MARK: - Functions
 
 extension MenuChips {
-    @ViewBuilder
     private func menuChip(_ menuItem: String) -> some View {
         Text(menuItem)
             .applyCBFont(.subtitle03)

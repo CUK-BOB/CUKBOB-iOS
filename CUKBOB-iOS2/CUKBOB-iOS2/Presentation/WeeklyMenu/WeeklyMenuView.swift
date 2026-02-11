@@ -34,12 +34,14 @@ struct WeeklyMenuView: View {
                 ScrollView(.vertical) {
                     weeklyMenuList
                 }
+                .scrollIndicators(.hidden)
             }
             .padding(.horizontal, 32.adjustedWidth)
         }
         .customNavigationBar(.weeklyMenu(myPageAction: {
             appCoordinator.navigate(to: .myPage)
         }))
+        .ignoresSafeArea(edges: .bottom)
     }
 }
 
@@ -68,7 +70,15 @@ extension WeeklyMenuView {
     }
     
     private var weeklyMenuList: some View {
-        WeeklyMenuCell(defaultWeeklyMenu: DefaultWeeklyMenu.mock, showsDivider: true)
+//        WeeklyMenuCell(
+//            weeklyMenuType: .standard(standardWeeklyMenu: StandardWeeklyMenu.mock),
+//            showsDivider: true
+//        )
+        
+        WeeklyMenuCell(
+            weeklyMenuType: .mensa(mensaWeeklyMenu: MensaWeeklyMenu.mock),
+            showsDivider: false
+        )
     }
 }
 
