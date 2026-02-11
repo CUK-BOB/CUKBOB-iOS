@@ -49,8 +49,13 @@ extension WeeklyMenuView {
     
     private var restaurantFilter: some View{
         HStack(alignment: .center, spacing: 12.adjustedWidth) {
-            ForEach(0..<3) { _ in
-                RestaurantFilterButton()
+            ForEach(Restaurant.allCases) { restaurant in
+                RestaurantFilterButton(
+                    restaurant: restaurant,
+                    selectedRestaurant: viewModel.selectedRestaurant
+                ) { restaurant in
+                    viewModel.dispatch(.selectRestaurant(restaurant))
+                }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

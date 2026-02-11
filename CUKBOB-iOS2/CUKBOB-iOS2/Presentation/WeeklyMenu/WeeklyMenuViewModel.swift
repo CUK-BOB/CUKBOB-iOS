@@ -13,11 +13,13 @@ final class WeeklyMenuViewModel: ObservableObject {
     // MARK: - Properties
     
     @Published var selectedDate: Date = Date()
+    @Published var selectedRestaurant: Restaurant = .buonpranzo
     
     // MARK: - Action
     
     enum Action {
         case selectDate(_ date: Date)
+        case selectRestaurant(_ restaurant: Restaurant)
     }
     
     // MARK: - Dispatch
@@ -26,6 +28,8 @@ final class WeeklyMenuViewModel: ObservableObject {
         switch action {
         case .selectDate(let date):
             self.selectedDate = date
+        case .selectRestaurant(let restaurant):
+            self.selectedRestaurant = restaurant
         }
     }
 }

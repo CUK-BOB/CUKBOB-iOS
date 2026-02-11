@@ -11,18 +11,39 @@ struct RestaurantFilterButton: View {
     
     // MARK: - Properties
     
+    private let restaurant: Restaurant
+    private let selectedRestaurant: Restaurant
+    private let onSelect: ((Restaurant) -> Void)?
+    
+    private var isSelected: Bool {
+        restaurant == selectedRestaurant
+    }
+    
+    // MARK: - Initializer
+    
+    init(
+        restaurant: Restaurant,
+        selectedRestaurant: Restaurant,
+        onSelect: ((Restaurant) -> Void)? = nil
+    ) {
+        self.restaurant = restaurant
+        self.selectedRestaurant = selectedRestaurant
+        self.onSelect = onSelect
+    }
+    
     // MARK: - Body
     
     var body: some View {
         Button {
-             
+            onSelect?(restaurant)
         } label: {
-            Text("부온브란조")
+            Text(restaurant.title)
                 .applyCBFont(.subtitle04)
-                .foregroundStyle(.gray400)
+                .frame(height: 18.adjustedHeight)
+                .foregroundStyle(isSelected ? .gray100 : .gray400)
                 .padding(.vertical, 8.adjustedHeight)
                 .padding(.horizontal, 12.adjustedWidth)
-                .background(.gray200)
+                .background(isSelected ? .blue200 : .gray200)
                 .capsuleClipped()
         }
         .buttonStyle(.plain)
@@ -30,5 +51,5 @@ struct RestaurantFilterButton: View {
 }
 
 #Preview {
-    RestaurantFilterButton()
+    RestaurantFilterButton(restaurant: .buonpranzo, selectedRestaurant: .buonpranzo)
 }
