@@ -35,7 +35,7 @@ struct CBButton: View {
     
     var body: some View {
         Button {
-            
+            action?()
         } label: {
             ZStack(alignment: .center) {
                 Rectangle()

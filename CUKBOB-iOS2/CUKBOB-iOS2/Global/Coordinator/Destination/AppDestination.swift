@@ -25,10 +25,10 @@ extension AppDestination {
             EditProfileView()
             
         case .withdraw:
-            Text("Withdraw")
+            WithdrawView()
             
         case .privacyPolicy:
-            Text("Privacy Policy")
+            privacyPolicyView()
         }
     }
 }
