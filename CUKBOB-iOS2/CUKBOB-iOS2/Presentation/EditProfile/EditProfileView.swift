@@ -29,8 +29,11 @@ struct EditProfileView: View {
             title
             
             textField
+            
+            Spacer()
+            
+            confirmButton
         }
-        .frame(maxHeight: .infinity, alignment: .top)
         .padding(.horizontal, 32.adjustedWidth)
         .background(.gray100)
         .onTapGesture {
@@ -62,6 +65,13 @@ extension EditProfileView {
                 print(text)
             }
         )
+    }
+    
+    private var confirmButton: some View {
+        CBButton(title: "확인", isEnabled: false) {
+            print("확인")
+        }
+        .padding(.bottom, 11.adjustedHeight)
     }
 }
 
