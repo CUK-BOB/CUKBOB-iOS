@@ -9,6 +9,9 @@ import SwiftUI
 
 enum AppDestination: Hashable {
     case myPage
+    case editProfile
+    case withdraw
+    case privacyPolicy
 }
 
 extension AppDestination {
@@ -16,7 +19,16 @@ extension AppDestination {
     func build() -> some View {
         switch self {
         case .myPage:
-            Text("myPage")
+            MyPageView()
+            
+        case .editProfile:
+            EditProfileView()
+            
+        case .withdraw:
+            WithdrawView()
+            
+        case .privacyPolicy:
+            privacyPolicyView()
         }
     }
 }

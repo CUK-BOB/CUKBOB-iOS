@@ -8,6 +8,6 @@
 import Foundation
 
 enum NavigationBarType {
-    case weeklyMenu(myPageAction: (() -> Void))
-    case myPage(backAction: (() -> Void))
+    case logoWithMyPage(myPageAction: (() -> Void))
+    case titleWithBack(title: String, backAction: (() -> Void))
 }
