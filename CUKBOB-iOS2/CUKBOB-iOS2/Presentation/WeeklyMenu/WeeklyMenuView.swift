@@ -31,6 +31,8 @@ struct WeeklyMenuView: View {
             VStack(alignment: .leading, spacing: 0) {
                 restaurantFilter
                 
+                location
+                
                 ScrollView(.vertical) {
                     weeklyMenuList
                 }
@@ -67,6 +69,19 @@ extension WeeklyMenuView {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.vertical, 12.adjustedHeight)
+    }
+    
+    private var location: some View {
+        HStack(alignment: .center, spacing: 4.adjustedWidth) {
+            Image(.fiRrMarker)
+                .resizable()
+                .frame(width: 16.adjusted, height: 16.adjusted)
+            
+            Text(viewModel.selectedRestaurant.location)
+                .applyCBFont(.caption01)
+                .foregroundStyle(.gray400)
+        }
+        .padding(.bottom, 8.adjustedHeight)
     }
     
     private var weeklyMenuList: some View {
