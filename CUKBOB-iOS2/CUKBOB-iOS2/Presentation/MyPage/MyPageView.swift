@@ -12,6 +12,7 @@ struct MyPageView: View {
     // MARK: - Properties
     
     @EnvironmentObject private var appCoordinator: AppCoordinator
+    @EnvironmentObject private var alertManager: AlertManager
     @StateObject private var viewModel: MyPageViewModel
     
     // MARK: - Initializer
@@ -52,7 +53,9 @@ extension MyPageView {
                 case .editProfile:
                     appCoordinator.navigate(to: .editProfile)
                 case .logout:
-                    print("알람창 노출")
+                    alertManager.show(alertType: .logout, onCancel: nil) {
+                        print("로그아웃 성공")
+                    }
                 case .withdraw:
                     appCoordinator.navigate(to: .withdraw)
                 case .privacyPolicy:
@@ -92,4 +95,5 @@ extension MyPageView {
 #Preview {
     MyPageView()
         .environmentObject(AppCoordinator())
+        .environmentObject(AlertManager())
 }
