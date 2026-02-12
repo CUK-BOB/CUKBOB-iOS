@@ -48,7 +48,16 @@ extension MyPageView {
     private func myPageOptionRow(_ myPageOption: MyPageOption) -> some View {
         VStack(alignment: .center, spacing: 0) {
             Button {
-                
+                switch myPageOption {
+                case .editProfile:
+                    appCoordinator.navigate(to: .editProfile)
+                case .logout:
+                    print("알람창 노출")
+                case .withdraw:
+                    appCoordinator.navigate(to: .withdraw)
+                case .privacyPolicy:
+                    appCoordinator.navigate(to: .privacyPolicy)
+                }
             } label: {
                 HStack(alignment: .center, spacing: 12.adjustedWidth) {
                     Image(myPageOption.icon)
