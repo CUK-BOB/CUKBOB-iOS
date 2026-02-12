@@ -38,7 +38,7 @@ struct WeeklyMenuView: View {
             }
             .padding(.horizontal, 32.adjustedWidth)
         }
-        .customNavigationBar(.weeklyMenu(myPageAction: {
+        .customNavigationBar(.logoWithMyPage(myPageAction: {
             appCoordinator.navigate(to: .myPage)
         }))
         .ignoresSafeArea(edges: .bottom)

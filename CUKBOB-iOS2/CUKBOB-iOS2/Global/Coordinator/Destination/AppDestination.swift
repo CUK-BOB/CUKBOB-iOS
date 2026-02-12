@@ -16,7 +16,7 @@ extension AppDestination {
     func build() -> some View {
         switch self {
         case .myPage:
-            Text("myPage")
+            MyPageView()
         }
     }
 }

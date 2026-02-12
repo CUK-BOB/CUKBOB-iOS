@@ -63,9 +63,9 @@ extension View {
     func customNavigationBar(_ navigationBarType: NavigationBarType) -> some View  {
         switch navigationBarType {
             
-        // MARK: - 주간 학식
+        // MARK: - 로고 & 마이페이지
             
-        case .weeklyMenu(let myPageAction):
+        case .logoWithMyPage(let myPageAction):
             self.modifier(
                 CustomNavigationBarModifier(
                     centerView: {
@@ -94,13 +94,13 @@ extension View {
                 )
             )
             
-        // MARK: - 마이 페이지
+        // MARK: - 타이틀 & 뒤로가기
             
-        case .myPage(let backAction):
+        case .titleWithBack(let title, let backAction):
             self.modifier(
                 CustomNavigationBarModifier(
                     centerView: {
-                        Text("마이페이지")
+                        Text(title)
                             .applyCBFont(.subtitle01)
                             .foregroundStyle(.gray600)
                     },
