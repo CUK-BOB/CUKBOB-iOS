@@ -21,7 +21,7 @@ extension RootDestination {
         case .splash:
             SplashView()
         case .auth:
-            Text("auth")
+            AuthView()
         case .onboarding:
             Text("onboarding")
         case .weeklyMenu:
