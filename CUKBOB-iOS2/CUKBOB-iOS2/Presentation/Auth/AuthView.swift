@@ -44,7 +44,7 @@ extension AuthView {
         VStack(alignment: .center, spacing: 12.adjustedHeight) {
             VStack(alignment: .center, spacing: 12.adjustedHeight) {
                 SocialLoginButton(.kakao) {
-                    print("kakao로 로그인")
+                    appCoordinator.changeRoot(to: .onboarding)
                 }
                 
                 SocialLoginButton(.apple) {

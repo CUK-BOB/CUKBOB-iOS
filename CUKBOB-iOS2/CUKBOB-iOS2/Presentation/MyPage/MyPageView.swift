@@ -54,7 +54,7 @@ extension MyPageView {
                     appCoordinator.navigate(to: .editProfile)
                 case .logout:
                     alertManager.show(alertType: .logout, onCancel: nil) {
-                        print("로그아웃 성공")
+                        appCoordinator.changeRoot(to: .splash)
                     }
                 case .withdraw:
                     appCoordinator.navigate(to: .withdraw)

@@ -23,7 +23,7 @@ extension RootDestination {
         case .auth:
             AuthView()
         case .onboarding:
-            Text("onboarding")
+            OnboardingView()
         case .weeklyMenu:
             WeeklyMenuView()
         }
