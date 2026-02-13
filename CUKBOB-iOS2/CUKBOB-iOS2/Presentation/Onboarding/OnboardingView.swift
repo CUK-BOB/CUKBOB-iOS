@@ -1,25 +1,24 @@
 //
-//  WithdrawView.swift
+//  OnboardingView.swift
 //  CUKBOB-iOS2
 //
-//  Created by 김승원 on 2/12/26.
+//  Created by 김승원 on 2/13/26.
 //
 
 import SwiftUI
 
-struct WithdrawView: View {
+struct OnboardingView: View {
     
     // MARK: - Properties
     
     @EnvironmentObject private var appCoordinator: AppCoordinator
-    @EnvironmentObject private var alertManager: AlertManager
-    @StateObject private var viewModel: EditProfileViewModel
+    @StateObject private var viewModel: OnboardingViewModel
     
     // MARK: - Initializer
     
     init() {
         self._viewModel = StateObject(
-            wrappedValue: EditProfileViewModel()
+            wrappedValue: OnboardingViewModel()
         )
     }
     
@@ -40,7 +39,7 @@ struct WithdrawView: View {
         .onTapGesture {
             hideKeyboard()
         }
-        .customNavigationBar(.titleWithBack(title: "회원탈퇴", backAction: {
+        .customNavigationBar(.titleWithBack(title: "프로필수정", backAction: {
             appCoordinator.goBack()
         }))
     }
@@ -48,17 +47,17 @@ struct WithdrawView: View {
 
 // MARK: - Subviews
 
-extension WithdrawView {
+extension OnboardingView {
     private var title: some View {
-        TitleHeader(titleHeaderType: .withdraw)
+        TitleHeader(titleHeaderType: .nickname)
             .padding(.top, 36.adjustedHeight)
     }
     
     private var textField: some View {
         // TODO: - 바인딩 필요
         CBTextField(
-            placeholder: "회원탈퇴",
-            textFieldDescriptiontype: .withdrawalWarning,
+            placeholder: "닉네임 입력",
+            textFieldDescriptiontype: .none,
             onChange: { text in
                 print(text)
             },
@@ -69,17 +68,15 @@ extension WithdrawView {
     }
     
     private var confirmButton: some View {
-        CBButton(title: "탈퇴하기", isEnabled: true) {
-            alertManager.show(alertType: .withdraw, onCancel: nil) {
-                appCoordinator.changeRoot(to: .splash)
-            }
+        CBButton(title: "확인", isEnabled: true) {
+            appCoordinator.changeRoot(to: .weeklyMenu)
         }
         .padding(.bottom, 11.adjustedHeight)
     }
 }
 
 #Preview {
-    WithdrawView()
+    OnboardingView()
         .environmentObject(AppCoordinator())
-        .environmentObject(AlertManager())
 }
+

@@ -54,7 +54,7 @@ extension MyPageView {
                     appCoordinator.navigate(to: .editProfile)
                 case .logout:
                     alertManager.show(alertType: .logout, onCancel: nil) {
-                        print("로그아웃 성공")
+                        appCoordinator.changeRoot(to: .splash)
                     }
                 case .withdraw:
                     appCoordinator.navigate(to: .withdraw)
@@ -66,6 +66,7 @@ extension MyPageView {
                     Image(myPageOption.icon)
                         .resizable()
                         .frame(width: 20.adjusted, height: 20.adjusted)
+                        .aspectRatio(contentMode: .fit)
                     
                     Text(myPageOption.title)
                         .applyCBFont(.body02)
@@ -76,6 +77,7 @@ extension MyPageView {
                     Image(.arrowRight)
                         .resizable()
                         .frame(width: 24.adjusted, height: 24.adjusted)
+                        .aspectRatio(contentMode: .fit)
                     
                 }
                 .padding(.vertical, 20.adjustedHeight)
