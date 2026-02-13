@@ -66,6 +66,7 @@ extension MyPageView {
                     Image(myPageOption.icon)
                         .resizable()
                         .frame(width: 20.adjusted, height: 20.adjusted)
+                        .aspectRatio(contentMode: .fit)
                     
                     Text(myPageOption.title)
                         .applyCBFont(.body02)
@@ -76,6 +77,7 @@ extension MyPageView {
                     Image(.arrowRight)
                         .resizable()
                         .frame(width: 24.adjusted, height: 24.adjusted)
+                        .aspectRatio(contentMode: .fit)
                     
                 }
                 .padding(.vertical, 20.adjustedHeight)

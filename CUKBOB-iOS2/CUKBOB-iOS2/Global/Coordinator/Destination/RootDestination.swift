@@ -19,7 +19,7 @@ extension RootDestination {
     func build() -> some View {
         switch self {
         case .splash:
-            Text("splash")
+            SplashView()
         case .auth:
             Text("auth")
         case .onboarding:

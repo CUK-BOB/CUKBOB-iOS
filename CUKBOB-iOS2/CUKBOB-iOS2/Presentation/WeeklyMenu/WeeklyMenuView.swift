@@ -76,6 +76,7 @@ extension WeeklyMenuView {
             Image(.fiRrMarker)
                 .resizable()
                 .frame(width: 16.adjusted, height: 16.adjusted)
+                .aspectRatio(contentMode: .fit)
             
             Text(viewModel.selectedRestaurant.location)
                 .applyCBFont(.caption01)
